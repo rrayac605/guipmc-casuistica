@@ -1,0 +1,42 @@
+import { BitacoraDictamenDTO } from "../models/BitacoraDictamenDTO";
+
+export class IncapacidadDTO {
+  fecAlta: Date;
+  fecBaja: Date;
+  fecActualizacion: Date;
+  objectIdIncapacidad: string;
+  fecInicio: Date;
+  fecAtencion: Date;
+  fecAccidente: Date;
+  fecAltaIncapacidad: Date;
+  fecExpDictamen: Date;
+  fecFin: Date;
+  numDiasSubsidiados: string;
+  porPorcentajeIncapacidad: string;
+  numCausaExterna: string;
+  desCausaExterna: string;
+  numRiesgoFisico: string;
+  desRiesgoFisico: string;
+  numActoInseguro: string;
+  desActoInseguro: string;
+  numMatMedAutCdst: string;
+  numMatMedTratante: string;
+  numCodigoDiagnostico: string;
+  desCodigoDiagnostico: string;
+  fecIniPension: Date;
+  cveConsecuencia: string;
+  cveLaudo: string;
+  cveTipoRiesgo: string;
+  cveNaturaleza: string;
+  desConsecuencia: string;
+  desLaudo: string;
+  desNaturaleza: string;
+  desTipoRiesgo: string;
+  cveReevaluacion: string;
+  cveTipoIncapacidad: string;
+  desTipoIncapacidad: string;
+  cveTipoModifPatronal :string;
+  modifPatronal:boolean;
+  desTipoModifPatronal:string;
+  bitacoraDictamen: BitacoraDictamenDTO[];
+}

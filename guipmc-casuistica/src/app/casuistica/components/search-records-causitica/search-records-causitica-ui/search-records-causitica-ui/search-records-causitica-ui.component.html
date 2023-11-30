@@ -1,0 +1,231 @@
+<app-navbar></app-navbar>
+<app-breadcrumb-ux [titulo]="titulo"></app-breadcrumb-ux>
+
+<!-- CIFRAS CONTROL  -->
+
+<br>
+<br>
+<main class="page">
+    <div class="container">
+
+        <form class="form-inline" [formGroup]="formGroup">
+
+            <div class="row">
+                <p>Ingresa los datos para realizar la búsqueda</p>
+            </div>
+            <br>
+            <div class="row">
+                <div class="form-group col-md-3">
+                    <h3 style="margin-top:0px;">Desde*</h3>
+                    <div class="form-group datepicker-group">
+                        <input class="form-control" type="text" id="fechaInicio1causitica" formControlName="date">
+                        <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+                    </div>
+                </div>
+                <div class="form-group col-md-3">
+                    <h3 style="margin-top:0px;">Hasta*</h3>
+                    <div class="form-group datepicker-group">
+                        <input class="form-control" type="text" id="fechaFin1causitica" formControlName="date2">
+                        <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+                    </div>
+                </div>
+
+
+
+                <div class="col-md-3">
+                    <h3 style="margin-top:0px;">Delegación del Registro Patronal</h3>
+                    <select class="form-control" formControlName="delegation" (change)="chargeSubDelegation($event.target.value)" style="width: 100%; font-size: 12px;">
+                      <option value="-1" >
+                          <span>Selecciona una opción</span>
+                        </option>
+                      <option *ngFor="let del of selectDelegacion" [value]="del.clave"  >
+                          {{ del.descripcion }}
+                        </option>
+                  </select>
+                </div>
+
+                <div class="col-md-3">
+                    <h3 style="margin-top:0px;">Subdelegación</h3>
+                    <select class="form-control" formControlName="subDelegation" style="width: 100%; font-size: 12px;">
+                        <option value="-1">
+                            <span>Selecciona una opción</span>
+                          </option>
+                        <option *ngFor="let del of selectSubDelegacion" [value]="del.clave" >
+                            {{ del.descripcion }}
+                          </option>
+                  </select>
+                </div>
+
+
+
+
+
+
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-md-5">
+                    <div class="form-group col-md-offset-1 col-md-11" style="
+                          margin-left: 0px; padding-left: 0px; ">
+                        <label class="col-sm-7" for="email">
+        <h3>
+          * Campos obligatorios
+        </h3>
+      </label>
+                    </div>
+                </div>
+                <div class="col-md-7 text-right">
+                    <button type="button" class="btn btn-default" (click)="clear()">Limpiar</button>
+                    <button type="button" class="btn btn-primary" (click)="search()">Buscar</button>
+
+                </div>
+            </div>
+            <br>
+            <br>
+
+
+            <div *ngIf="verPdf">
+                <div class="row">
+                    <h3>Resultados de búsqueda</h3>
+                    <hr class="red">
+                </div>
+                <div class="row table-responsive" style="text-align:center">
+                    <table class="table table-striped" style="border: solid 1px #DDDDDD; ">
+
+                        <colgroup>
+                            <col span="1">
+                            <col span="1" style="border-right: 1px solid #DDDDDD;">
+                            <col span="4">
+                            <col span="1" style="border-right: 1px solid #DDDDDD;">
+                            <col span="5">
+                            <col span="1" style="border-left: 1px solid #DDDDDD;">
+                        </colgroup>
+                        <tbody>
+
+                            <tr>
+                                <th style="text-align: center">Desde:<br>Hasta:</th>
+                                <th style="text-align: center">{{formGroup.get('date').value}}<br>{{formGroup.get('date2').value}}</th>
+
+                                <th style="text-align: center" colspan="6">Registros <br>Delegación</th>
+
+                                <th style="text-align: center" colspan="6">Registros <br>Otras delegaciones</th>
+
+
+
+                            </tr>
+                            <tr>
+                                <th style="text-align: center">Identificador de archivo</th>
+
+                                <th style="text-align: center">Total</th>
+
+                                <th style="text-align: center">Correctos</th>
+                                <th style="text-align: center">Erróneos</th>
+                                <th style="text-align: center">Duplicados</th>
+                                <th style="text-align: center">Susceptibles de ajustes</th>
+                                <th style="text-align: center">Baja</th>
+
+                                <th style="text-align: center">Correctos</th>
+                                <th style="text-align: center">Erróneos</th>
+                                <th style="text-align: center">Duplicados</th>
+                                <th style="text-align: center">Susceptibles de ajustes</th>
+                                <th style="text-align: center">Baja</th>
+
+                            </tr>
+                            <tr *ngFor="let resuT of detalleConsultaDTO, let i = index">
+                                <td style="text-align: center">{{resuT._id}}</td>
+                                <td style="text-align: center">{{resuT.total | number}}</td>
+
+                                <td style="text-align: center">{{resuT.correcto | number}}</td>
+                                <td style="text-align: center">{{resuT.erroneo | number}}</td>
+                                <td style="text-align: center">{{resuT.duplicado | number}}</td>
+                                <td style="text-align: center">{{resuT.susceptible | number}}</td>
+                                <td style="text-align: center">{{resuT.baja | number}}</td>
+
+                                <td style="text-align: center">{{resuT.correctoOtras | number}}</td>
+                                <td style="text-align: center">{{resuT.erroneoOtras | number}}</td>
+                                <td style="text-align: center">{{resuT.duplicadoOtras | number}}</td>
+                                <td style="text-align: center">{{resuT.susceptibleOtras | number}}</td>
+                                <td style="text-align: center">{{resuT.bajaOtrasDelegaciones | number}}</td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: center">Totales</td>
+
+                                <td style="text-align: center">{{cifrasControlTotales.numTotalRegistros | number}}</td>
+
+
+                                <td style="text-align: center">{{cifrasControlTotales.numRegistrosCorrectos | number}}</td>
+                                <td style="text-align: center">{{cifrasControlTotales.numRegistrosError | number}}</td>
+                                <td style="text-align: center">{{cifrasControlTotales.numRegistrosDup | number}}</td>
+                                <td style="text-align: center">{{cifrasControlTotales.numRegistrosSus | number}}</td>
+                                <td style="text-align: center">{{cifrasControlTotales.numRegistrosBaja | number}}</td>
+                                <td style="text-align: center">{{cifrasControlTotales.numRegistrosCorrectosOtras | number}}</td>
+                                <td style="text-align: center">{{cifrasControlTotales.numRegistrosErrorOtras | number}}</td>
+                                <td style="text-align: center">{{cifrasControlTotales.numRegistrosDupOtras | number}}</td>
+                                <td style="text-align: center">{{cifrasControlTotales.numRegistrosSusOtras | number}}</td>
+                                <td style="text-align: center">{{cifrasControlTotales.numRegistrosBajaOtras | number}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <br>
+
+
+                <br><br>
+                <div class="row">
+
+                    <div class="col-md-12 text-right" *ngIf="verPdf">
+                        <button type="button" class="btn btn-primary" (click)="downloadPDFReport()">Descargar PDF</button>
+
+                    </div>
+
+                </div>
+            </div>
+            <br>
+
+
+        </form>
+
+
+        <div class="modal fade" id="dialogMessage">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">{{titDialogo}}</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>{{messDialogo}}</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" (click)="hideMessage()">Regresar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="dialogMessageReporte">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">{{titDialogo}}</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>{{messDialogo}}</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary">PDF</button>
+
+                        <button type="button" class="btn btn-primary">Excel</button>
+                        <button type="button" class="btn btn-primary" (click)="hideMessageReporte()">Regresar</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <br>
+    <br>
+
+    <br>
+</main>
+<ngx-spinner></ngx-spinner>

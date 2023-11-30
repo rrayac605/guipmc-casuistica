@@ -1,0 +1,42 @@
+<nav class="navbar navbar-inverse sub-navbar navbar-fixed-top" id="headerNav">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#subenlaces">
+    <span class="sr-only">Programa Monitoreo Casuística</span>
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+  </button>
+            <a class="nav-title-pmc">Programa Monitoreo Casuística</a>
+        </div>
+        <div class="collapse navbar-collapse" id="subenlaces">
+            <ul class="nav navbar-nav navbar-right">
+                <li *ngIf="viewAltaCasuistica || viewAltaAprobacion ||viewMovimientos" class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Realizar movimientos <span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li *ngIf="viewAltaCasuistica"><a (click)="viewAltaCasuistica?goToAltaCasuistica() : ''" [ngClass]="viewAltaCasuistica? '' : 'inactive'" [routerLinkActive]="viewAltaCasuistica? 'active' : 'inactive'">Alta de casuística </a></li>
+                        <li *ngIf="viewAltaAprobacion"><a (click)="goToAltaAprovacion()">Alta de casuística</a></li>
+                              <li *ngIf="viewMovimientos"><a (click)="viewMovimientos? goToBuscarMovimientos() : ''" [ngClass]="viewMovimientos? '' : 'inactive'" [routerLinkActive]="viewMovimientos? 'active' : 'inactive'">Modificar casuística</a></li>
+
+                              <li *ngIf="viewMovimientos"><a (click)="viewMovimientos? goToBuscarMovimientos() : ''" [ngClass]="viewMovimientos? '' : 'inactive'" [routerLinkActive]="viewMovimientos? 'active' : 'inactive'">Confirmar movimientos</a></li>
+                    </ul>
+                </li>
+                <li *ngIf="viewConsultarCasuistry">
+                    <a (click)="viewConsultarCasuistry? goToBuscarCasuistica() : ''" [ngClass]="viewConsultarCasuistry? '' : 'inactive'" [routerLinkActive]="viewConsultarCasuistry? 'active' : 'inactive'">Consultar casuística</a>
+                </li>
+                <li *ngIf="viewConsultarCasuistry">
+                    <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Reportes<span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li *ngIf="viewCifrasControl"><a (click)="viewCifrasControl?goToEstatusArchivos() : ''" [ngClass]="viewCifrasControl? '' : 'inactive'" [routerLinkActive]="viewCifrasControl? 'active' : 'inactive'">Estatus de archivos</a></li>
+                        <li *ngIf="viewCifrasControl"><a (click)="viewCifrasControl?goToCifrasControl() : ''" [ngClass]="viewCifrasControl? '' : 'inactive'" [routerLinkActive]="viewCifrasControl? 'active' : 'inactive'">Distribución de la casuística por tipo de archivo</a></li>
+                        <li><a (click)="goToCifrasControlSub() ">Distribución de la casuística por OOAD</a></li>
+                        <li><a (click)="goToConsultarMovimientosCIC()">Indicador de movimientos realizados por el usuario</a></li>
+                        <li><a (click)="goToReporteTipoRiesgo() ">Distribución de la casuística por tipo de error, riesgo y consecuencia</a></li>
+                        <li><a (click)="goToReporteCierreAnual()">Reporte Cierre Anual</a></li>
+                    </ul>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</nav>

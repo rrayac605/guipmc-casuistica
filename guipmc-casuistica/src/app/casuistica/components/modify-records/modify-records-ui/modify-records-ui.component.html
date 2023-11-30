@@ -1,0 +1,627 @@
+<app-navbar></app-navbar>
+<app-breadcrumb-ux [titulo]="titulo"></app-breadcrumb-ux>
+
+
+<main class="page">
+    <div class="container">
+        <form class="form-inline" [formGroup]="formGroup" (ngSubmit)="guardarCambios()">
+
+            <br>
+            <div class="row table-responsive">
+                <table class="table  table-striped">
+                    <tbody>
+                        <tr>
+                            <th>
+                                Datos del asegurado</th>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="row">
+
+
+                                    <div class="col-sm-4 izqText">
+                                        <p>CURP</p>
+                                        <input class="form-control inputTamanioNormal" type="text" [value]="info.aseguradoDTO.refCurp !== undefined ? info.aseguradoDTO.refCurp : ''" disabled>
+                                    </div>
+
+                                    <div class="col-sm-4 izqText">
+                                        <p>NSS*</p>
+                                        <input [ngClass]="[!formGroup.controls['nss'].valid ? 'form-control-error':'form-control']  " class="form-control inputTamanioNormal" formControlName="nss" type="text" (blur)="cambiarNSS()">
+                                        <span class="error-class">{{ getError('nss')}}</span>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-md-8 izqText">
+                                        <p>Nombre(s) y apellidos</p>
+                                        <input class="form-control" style="width: 95%;" type="text" [value]="info.aseguradoDTO.nombreCompleto !== undefined ? info.aseguradoDTO.nombreCompleto : ''" disabled>
+                                    </div>
+
+
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-md-4 izqText">
+                                        <p> Delegación del NSS</p>
+                                        <input class="form-control inputTamanioNormal" type="text" [value]="info.aseguradoDTO.desDelegacionNss !== undefined ? info.aseguradoDTO.desDelegacionNss : ''" disabled>
+                                    </div>
+
+                                    <div class="col-sm-4 izqText">
+                                        <p>Subdelegación del NSS</p>
+                                        <input class="form-control inputTamanioNormal" type="text" [value]="info.aseguradoDTO.desSubDelNss !== undefined ? info.aseguradoDTO.desSubDelNss : ''" disabled>
+                                    </div>
+
+                                    <div class="col-md-4 izqText">
+                                        <p>UMF de adscripción</p>
+                                        <input class="form-control inputTamanioNormal" type="text" [value]="info.aseguradoDTO.desUmfAdscripcion !== undefined ? info.aseguradoDTO.desUmfAdscripcion : ''" disabled>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-sm-4 izqText">
+                                        <p>Delegación Atención del NSS</p>
+                                        <input class="form-control inputTamanioNormal" type="text" [value]="info.aseguradoDTO.desDelegacionAtencion !== undefined ? info.aseguradoDTO.desDelegacionAtencion : ''" disabled>
+                                    </div>
+                                    <div class="col-sm-4 izqText">
+                                        <p>Subdelegación de Atención del NSS</p>
+                                        <input class="form-control inputTamanioNormal" type="text" [value]="info.aseguradoDTO.desSubDelAtencion !== undefined ? info.aseguradoDTO.desSubDelAtencion : ''" disabled>
+                                    </div>
+                                    <div class="col-sm-4 izqText">
+                                        <p>UMF de expedición</p>
+                                        <input class="form-control inputTamanioNormal" type="text" [value]="info.aseguradoDTO.desUmfExp !== undefined ? info.aseguradoDTO.desUmfExp : ''" disabled>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-md-4 izqText">
+                                        <p>UMF pagadora</p>
+                                        <input class="form-control inputTamanioNormal" type="text" [value]="info.aseguradoDTO.desUmfPagadora !== undefined ? info.aseguradoDTO.desUmfPagadora : ''" disabled>
+                                    </div>
+
+                                    <div class="col-sm-4 izqText">
+                                        <p style="margin-top:0px;">Código de error</p>
+                                        <input class="form-control inputTamanioNormal" type="text" [value]="info.aseguradoDTO.desCodigoError !== undefined ? info.aseguradoDTO.desCodigoError : ''" disabled>
+                                    </div>
+
+                                    <div class="col-sm-4 izqText">
+                                        <p style="margin-top:0px;">Año ciclo </p>
+                                        <input class="form-control inputTamanioNormal" type="text" [value]="info.aseguradoDTO.numCicloAnual !== undefined ? info.aseguradoDTO.numCicloAnual : ''" disabled>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-md-4 izqText">
+                                        <p>Tipo de registro </p>
+                                        <input class="form-control inputTamanioNormal" type="text" [value]="info.aseguradoDTO.desCasoRegistro !== undefined ? info.aseguradoDTO.desCasoRegistro : ''" disabled>
+                                    </div>
+
+                                    <div class="col-sm-4 izqText">
+                                        <p>Ocupación</p>
+                                        <input class="form-control inputTamanioNormal" type="text" [value]="info.aseguradoDTO.desOcupacion !== undefined ? info.aseguradoDTO.desOcupacion : ''" disabled>
+                                    </div>
+
+                                    <div class="col-sm-4 izqText">
+                                        <p>Salario diario</p>
+                                        <input class="form-control inputTamanioNormal" type="text" [value]="info.aseguradoDTO.numSalarioDiario !== undefined ? info.aseguradoDTO.numSalarioDiario : ''" disabled>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <br>
+            <!--       TABLA DE LA INCAPACIDAD     -->
+            <div class="row table-responsive">
+                <table class="table  table-striped">
+                    <tbody>
+                        <tr>
+                            <th>
+                                Datos de la incapacidad
+                            </th>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center">
+                                <div class="row">
+                                    <div class="col-md-4 izqText">
+                                        <p>Fecha de inicio *</p>
+                                        <input [ngClass]="[!formGroup.controls['date'].valid? 'form-control-error':'form-control']  " class="form-control inputTamanioNormal" formControlName="date" id="fechaModifyRec" autocomplete="false">
+                                        <span class="error-class">{{ getError('date')}}</span>
+                                    </div>
+
+                                    <div class="col-sm-4 izqText">
+                                        <p>Fecha de atención</p>
+                                        <input class="form-control inputTamanioNormal" type="text" disabled [value]="info.incapacidadDTO.fecAtencion | date:'dd/MM/yyyy'">
+                                    </div>
+
+                                    <div class="col-sm-4 izqText">
+                                        <p>Fecha de accidente</p>
+                                        <input class="form-control inputTamanioNormal" type="text" disabled [value]="info.incapacidadDTO.fecAccidente | date:'dd/MM/yyyy'">
+                                    </div>
+
+
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-md-4 izqText">
+                                        <p>Fecha inicio de pensión *</p>
+                                        <input class="form-control inputTamanioNormal" type="text" disabled [value]="info.incapacidadDTO.fecIniPension | date:'dd/MM/yyyy'">
+                                    </div>
+
+                                    <div class="col-sm-4 izqText">
+                                        <p>Fecha de alta</p>
+                                        <input class="form-control inputTamanioNormal" type="text" disabled [value]="info.incapacidadDTO.fecAltaIncapacidad | date:'dd/MM/yyyy'">
+
+                                    </div>
+                                    <div class="col-sm-4 izqText">
+                                        <p>Fecha de expedición del dictamen</p>
+                                        <input class="form-control inputTamanioNormal" type="text" disabled [value]="info.incapacidadDTO.fecExpDictamen | date:'dd/MM/yyyy'">
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-md-4 izqText">
+                                        <p>Fecha fin *</p>
+                                        <input [ngClass]="[!formGroup.controls['date2'].valid? 'form-control-error':'form-control']  " class="form-control inputTamanioNormal" formControlName="date2" id="fechaModifyRec2" autocomplete="false">
+                                        <span class="error-class">{{ getError('date2')}}</span>
+                                    </div>
+
+                                    <div class="col-sm-4 izqText">
+                                        <p>Días subsidiados*</p>
+                                        <input [ngClass]="[!formGroup.controls['diasSubsidiados'].valid? 'form-control-error':'form-control']  " class="form-control inputTamanioNormal" type="text" formControlName="diasSubsidiados">
+                                        <span class="error-class">{{ getError('diasSubsidiados')}}</span>
+                                    </div>
+                                    <div class="col-sm-4 izqText">
+                                        <p>Porcentaje de incapacidad</p>
+                                        <input [ngClass]="[!formGroup.controls['porcentajeIncapacidad'].valid? 'form-control-error':'form-control']" class="inputTamanioNormal" type="text" formControlName="porcentajeIncapacidad" (change)="changeTipoDictamen()">
+                                        <span class="error-class">{{ getError('porcentajeIncapacidad') }}</span>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-md-4 izqText">
+                                        <p>Causa externa</p>
+                                        <input class="form-control inputTamanioNormal" type="text" disabled [value]="info.incapacidadDTO.desCausaExterna !== undefined ? info.incapacidadDTO.desCausaExterna : ''">
+                                    </div>
+
+                                    <div class="col-sm-4 izqText">
+                                        <p style="margin-top:0px;">Naturaleza</p>
+                                        <input class="form-control inputTamanioNormal" type="text" disabled [value]="info.incapacidadDTO.desNaturaleza !== undefined ? info.incapacidadDTO.desNaturaleza : ''">
+                                    </div>
+
+                                    <div class="col-sm-4 izqText">
+                                        <p style="margin-top:0px;">Riesgo físico</p>
+                                        <input class="form-control inputTamanioNormal" type="text" disabled [value]="info.incapacidadDTO.desRiesgoFisico !== undefined ? info.incapacidadDTO.desRiesgoFisico : ''">
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-md-4 izqText">
+                                        <p>Acto inseguro</p>
+                                        <input class="form-control inputTamanioNormal" type="text" disabled [value]="info.incapacidadDTO.desActoInseguro !== undefined ? info.incapacidadDTO.desActoInseguro : ''">
+                                    </div>
+
+                                    <div class="col-sm-4 izqText">
+                                        <p style="margin-top:0px;">Tipo de riesgo *</p>
+                                        <select [ngClass]="[!formGroup.controls['tipoRiesgo'].valid? 'form-control-error':'form-control']  " class="inputTamanioNormal" formControlName="tipoRiesgo">
+                                          <option value="-1">
+                                              <span>Selecciona una opción</span>
+                                            </option>
+                                            <option *ngFor="let sts of catTipoRiesgo" [value]="sts.cveCatalogo" >
+                                              {{sts.cveCatalogo}} - {{ sts.descCatalogo }}
+                                            </option>
+                                        </select>
+                                        <span class="error-class">{{ getError('tipoRiesgo')}}</span>
+                                    </div>
+
+                                    <div class="col-sm-4 izqText">
+                                        <p style="margin-top:0px;">Consecuencia *</p>
+                                        <select [ngClass]="[!formGroup.controls['consecuencia'].valid? 'form-control-error':'form-control']  " class="inputTamanioNormal" formControlName="consecuencia" (change)="changeTipoDictamen()">
+                                          <option value="-1">
+                                              <span>Selecciona una opción</span>
+                                            </option>
+                                            <option *ngFor="let sts of catConsecuencia" [value]="sts.cveCatalogo">
+                                              {{sts.cveCatalogo}} - {{ sts.descCatalogo }}
+                                            </option>
+                                        </select>
+                                        <span class="error-class">{{ getError('consecuencia')}}</span>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-md-4 izqText">
+                                        <p>Laudo</p>
+                                        <input class="form-control inputTamanioNormal" type="text" disabled [value]="info.incapacidadDTO.desLaudo !== undefined ? info.incapacidadDTO.desLaudo : ''">
+                                    </div>
+
+                                    <div class="col-sm-4 izqText">
+                                        <p>Matrícula del médico tratante </p>
+                                        <input class="form-control inputTamanioNormal" type="text" disabled [value]="info.incapacidadDTO.numMatMedTratante !== undefined ? info.incapacidadDTO.numMatMedTratante : ''">
+                                    </div>
+
+                                    <div class="col-sm-4 izqText">
+                                        <p>Matrícula del médico que autoriza CDST</p>
+                                        <input class="form-control inputTamanioNormal" type="text" disabled [value]="info.incapacidadDTO.numMatMedAutCdst !== undefined ? info.incapacidadDTO.numMatMedAutCdst : ''">
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-md-4 izqText">
+                                        <p>C&oacute;digo del diagn&oacute;stico</p>
+                                        <input class="form-control inputTamanioNormal" type="text" disabled [value]="info.incapacidadDTO.desCodigoDiagnostico !== undefined ? info.incapacidadDTO.desCodigoDiagnostico : ''">
+                                    </div>
+
+                                    <div class="col-md-4" style="margin-top:0px; text-align: left;">
+                                        <p>Tipo de incapacidad</p>
+                                        <input class="form-control inputTamanioNormal" type="text" disabled [value]="info.incapacidadDTO.desTipoIncapacidad !== undefined? info.incapacidadDTO.desTipoIncapacidad : ''">
+                                    </div>
+                                    <div class="col-md-4" style="margin-top:15px; text-align: left;">
+                                        <p> </p>
+                                        <button type="button" (click)="dictamen()" *ngIf="showBtnDictamen" class="btn btn-success-pmc">Dictamen SIST</button>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-sm-4" style="margin-top:0px; text-align: left;">
+                                        <p>Tipo Dictamen</p>
+                                        <select [ngClass]="[!formGroup.controls['tipoDictamen'].valid? 'form-control-error':'form-control']  " class="inputTamanioNormal" 
+                                            formControlName="tipoDictamen" (change)="changeTipoDictamen()">
+                                            <option value="-1">
+                                                <span>Selecciona una opción</span>
+                                              </option>
+                                              <option value="ST3">
+                                                <span>ST3</span>
+                                            </option>
+                                            <option value="ST5">
+                                                <span>ST5</span>
+                                            </option>
+                                          </select>
+                                          <span class="error-class">{{ getError('tipoDictamen')}}</span>
+                                    </div>
+                                    <div id="divShowDictamen">
+                                        <div class="col-sm-4" style="margin-top:0px; text-align: left;">
+                                            <p>Folio</p>
+                                            <input class="form-control inputTamanioNormal" type="text" [value]="getNumFolio()" 
+                                            tooltip="{{ getNumFolio() }}"
+                                            formControlName="numFolio" placement="top">
+                                            <span class="error-class">{{ getError('numFolio')}}</span>
+                                        </div>
+                                        <div class="col-sm-4 izqText">
+                                            <p>Adjuntar dictamen</p>
+                                            <input type="file" formControlName="adjDictamen" id="adjDictamen" class="form-control inputTamanioNormal" accept=".jpg,.png,.pdf" (change)="cargueArchivo($event)" >
+                                            <span class="error-class">{{ getError('adjDictamen')}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <br>
+            <!--       TABLA DE LA INCAPACIDAD     -->
+                  <!--       TABLA DATOS DEL PATRON     -->
+  <div class="row table-responsive">
+    <table class="table  table-striped" style="border: solid 1px #DDDDDD; width: 95%; ">
+                
+  
+
+        <tbody>
+            <tr>
+                <th style="text-align: center;">
+                    Datos del patrón
+                </th>
+            </tr>
+            <tr>
+                <td style="text-align: center">
+                    <div class="row">
+                        <div class="col-md-4 izqText">
+                            <p>Registro Patronal*</p>
+
+							<input [ngClass]="[!formGroup.controls['registroPatronal'].valid? 'form-control-error':'form-control']  " class="form-control inputTamanioNormal" type="text" formControlName="registroPatronal" (blur)="cambiarRP()" (click)="disableSublimeButon()">
+                            <span class="error-class">{{ getError('registroPatronal')}}</span>
+                               
+                        </div>
+                        <div class="col-md-8 izqText">
+                            <p>Razón social del patrón *</p>
+
+                            <input class="form-control inputTamanioNormal100" 
+                            [value]="info.patronDTO.desRazonSocial != undefined ? info.patronDTO.desRazonSocial : ''" tooltip="{{info.patronDTO.desRazonSocial}}" placement="top" 
+                         
+                               readonly>
+                        
+
+                        </div>
+
+                         
+                    </div>
+                    <br>
+
+                    <div class="row">
+                        <div class="col-md-4 izqText">
+                            <p>Clave fracción </p>
+
+                            <input class="form-control inputTamanioNormal" 
+                            [value]="info.patronDTO.cveFraccion !== undefined ? info.patronDTO.cveFraccion : ''" tooltip="{{info.patronDTO.cveFraccion}}"
+                           
+                             readonly>
+
+                        </div>
+                        <div class="col-md-4 izqText">
+                            <p>Prima SRT</p>
+
+                            <input class="form-control inputTamanioNormal"
+                            [value]="info.patronDTO.numPrima !== undefined ? info.patronDTO.numPrima : ''" tooltip="{{info.patronDTO.numPrima}}" placement="top" 
+                            readonly>
+                        </div>
+                        <div class="col-md-4 izqText">
+                            <p>Clase </p>
+
+                            <input class="form-control inputTamanioNormal"
+                            [value]="info.patronDTO.desClase !== undefined ? info.patronDTO.desClase : ''" tooltip="{{info.patronDTO.desClase}}" placement="top"   readonly>
+                        </div>
+
+                    </div>
+                    <br>
+                    <div class="row">
+
+                        <div class="col-md-12 izqText">
+                            <p>Actividad económica </p>
+
+                            <input class="form-control inputTamanioNormal200" 
+                            [value]="info.patronDTO.desFraccion !== undefined ? info.patronDTO.desFraccion : ''" tooltip="{{info.patronDTO.desFraccion}}"
+                        
+                            readonly>
+
+
+                        </div>
+
+
+                    </div>
+                    <br>
+
+                    <div class="row">
+
+                        <div class="col-md-4 izqText">
+                            <p>Delegación del Registro</p>
+
+                            <input class="form-control inputTamanioNormal" 
+                            [value]="info.patronDTO.desDelRegPatronal !== undefined ? info.patronDTO.desDelRegPatronal : ''" tooltip="{{info.patronDTO.desDelRegPatronal}}" placement="top"  readonly>
+
+                        </div>
+                        <div class="col-md-4 izqText">
+                            <p>Subdelegación del Registro</p>
+
+                            <input class="form-control inputTamanioNormal"
+                            [value]="info.patronDTO.desSubDelRegPatronal !== undefined ? info.patronDTO.desSubDelRegPatronal : ''" tooltip="{{info.patronDTO.desSubDelRegPatronal}}" placement="top"   readonly>
+
+
+                        </div>
+                        <div class="col-md-4 izqText">
+                            <p>RFC patronal </p>
+
+                            <input class="form-control inputTamanioNormal" 
+                            [value]="info.patronDTO.desRfc !== undefined ? info.patronDTO.desRfc : ''" tooltip="{{info.patronDTO.desRfc}}" placement="top"  readonly>
+
+                        </div>
+
+
+
+                    </div>
+                    <br>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+            <!--       TABLA DEL REGISTRO   -->
+            <div class="row table-responsive">
+                <table class="table  table-striped">
+                    <tbody>
+                        <tr>
+                            <th>
+                                Datos del registro
+                            </th>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center">
+                                <div class="row">
+                                    <div class="col-md-4 izqText">
+                                        <p>Estado del registro</p>
+                                        <input class="form-control inputTamanioNormal" type="text" disabled [value]="getEstadoResgistro()" tooltip="{{ getEstadoResgistro() }}">
+                                    </div>
+                                    <div class="col-md-4 izqText">
+                                        <p>Acci&oacute;n del registro</p>
+                                        <input class="form-control inputTamanioNormal" type="text" disabled [value]="getAccionRegistro()" tooltip="{{ getAccionRegistro() }}">
+                                    </div>
+                                    <div class="col-md-4 izqText">
+                                        <p>Situaci&oacute;n del registro</p>
+                                        <input class="form-control inputTamanioNormal" type="text" disabled [value]="getSituacionRegistro()" tooltip="{{ getSituacionRegistro() }}">
+                                    </div>
+                                </div>
+                                <br />
+                                <div class="row">
+                                    <div class="col-md-4" style="margin-top:0px; text-align: left;">
+                                        <p>Fecha de cambio</p>
+                                        <input class="form-control inputTamanioNormal" type="text" disabled [value]="info.aseguradoDTO.fecActualizacion | dateString">
+                                    </div>
+                                    <div class="col-md-4" style="margin-top:0px; text-align: left;">
+                                        <p>Hora del cambio</p>
+                                        <input class="form-control inputTamanioNormal" type="text" disabled [value]="info.aseguradoDTO.fecActualizacion | dateString : 'hours'">
+                                    </div>
+                                    <div class="col-md-4" style="margin-top:0px; text-align: left;">
+                                        <p>Cuenta de Usuario</p>
+                                        <input class="form-control inputTamanioNormal" type="text" disabled [value]="getUsuarioModificador()" tooltip="{{ getUsuarioModificador() }}">
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!--      FIN TABLA DE LA INCAPACIDAD     -->
+
+            <!--      TABLA DE COMENTARIOS       -->
+            <div class="row table-responsive">
+                <table class="table  table-striped">
+                    <tbody>
+                        <tr>
+                            <th>
+                                Comentarios*
+                            </th>
+                        </tr>
+                        <tr>
+
+                            <td style="text-align: center">
+                                <div class="row">
+                                    <div class="col-md-12 izqText">
+                                        <textarea [ngClass]="[!formGroup.controls['comentario'].valid? 'form-control-error':'form-control']  " class="form-control" style="width: 100%;" rows="3" formControlName="comentario"></textarea>
+                                        <span class="error-class">{{ getError('comentario')}}</span>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!--      FIN TABLA DE COMENTARIOS   -->
+
+            <br>
+            <div class="row">
+                <div class="col-md-2 text-left">
+                    <p>*Datos obligatorios</p>
+                </div>
+
+                <div class="col-md-10 text-right">
+                    <button type="button" class="btn btn-default" (click)="regresar()">Regresar</button> &nbsp;
+					<button *ngIf="!insertado" [disabled]="disableSublime" type="submit" class="btn btn-primary">Actualizar movimiento</button>
+                </div>
+            </div>
+
+
+
+            <div class="modal fade" id="dialogMessage">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">{{titDialogo}}</h4>
+                        </div>
+                        <div class="modal-body">
+                            <h3>{{messDialogo}}</h3>
+                        </div>
+                        <div class="modal-footer">
+
+                            <div class="col-md-12 text-right">
+                                <button type="button" class="btn btn-primary" (click)="hideMessage('dialogMessage')">Regresar</button> &nbsp;
+                                <button *ngIf="mostrarSi" type="button" class="btn btn-primary" (click)="siGuardar()">Si</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade" id="dialogMessageV2">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">{{titDialogo}}</h4>
+                        </div>
+                        <div class="modal-body">
+                            <h3>{{messDialogo}} </h3>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" (click)="hideMessage('dialogMessageV2')">Regresar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade" id="dialogMessageV3">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">{{titDialogo}}</h4>
+                        </div>
+                        <div class="modal-body">
+                            <h3 *ngFor="let resuT of responseValidation">{{resuT.desCodigoError}} </h3>
+                        </div>
+                        <div class="modal-footer">
+                            <button *ngIf="!mostrarSi" type="button" class="btn btn-primary" (click)="hideMessage('dialogMessageV3')">Regresar</button>
+                            <button *ngIf="mostrarSi" type="button" class="btn btn-primary" (click)="salir()">Salir</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade" id="dialogMessageV4">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">{{titDialogoSave}}</h4>
+                        </div>
+                        <div class="modal-body">
+                            <h3>{{messDialogoSave}} </h3>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" (click)="salirUpdate()">Salir</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="modalFiles">
+                <div class="modal-dialog modal-lg" >
+                  <div class="modal-content" >
+                    <div class="modal-header">
+                        <h4 class="modal-title">{{titDialogo}}</h4>
+                    </div>
+                    <div class="modal-body">
+                        <object #pdfview
+                            [data]=''
+                            type="application/pdf"
+                            width="100%"
+                            height="500px">
+                        </object>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" (click)="imprimir()">Imprimir</button>
+                        <button type="button" class="btn btn-primary" (click)="downloadDictamen()">Descargar</button>
+                        <button type="button" class="btn btn-primary" (click)="closeModal()">Regresar</button>
+                    </div>
+                  </div>
+                </div>
+            </div>
+
+            <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="modalFilesSIST">
+                <div class="modal-dialog modal-lg" >
+                  <div class="modal-content" >
+                    <div class="modal-header">
+                        <h4 class="modal-title">{{titDialogo}}</h4>
+                    </div>
+                    <div class="modal-body">
+                        <object #pdfviewSIST
+                            [data]=''
+                            type="application/pdf"
+                            width="100%"
+                            height="500px">
+                        </object>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" (click)="imprimirSIST()">Imprimir</button>
+                        <button type="button" class="btn btn-primary" (click)="downloadDictamenSIST()">Descargar</button>
+                        <button type="button" class="btn btn-primary" (click)="closeModalSIST()">Regresar</button>
+                    </div>
+                  </div>
+                </div>
+            </div>
+
+        </form>
+    </div>
+    <br>
+    <br>
+    <br>
+</main>
+<ngx-spinner></ngx-spinner>

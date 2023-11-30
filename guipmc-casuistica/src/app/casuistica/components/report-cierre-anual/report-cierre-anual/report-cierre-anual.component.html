@@ -1,0 +1,85 @@
+<app-navbar></app-navbar>
+<app-breadcrumb-ux [titulo]="titulo"></app-breadcrumb-ux>
+<br>
+<br>
+<div class="modal fade" id="dialogMessage">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">{{titDialogo}}</h4>
+      </div>
+      <div class="modal-body">
+        <p>{{messDialogo}}</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="hideMessage()">Regresar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<main class="page">
+  <div class="container">
+    <form class="form-inline" [formGroup]="formGroup">
+      <div class="row">
+        <p>Ingresa los datos para generar el reporte</p>
+      </div>
+      <br>
+
+      <div class="row">
+        <div class="form-group col-md-4">
+          <h3 style="margin-top:0px;">Delegaci&oacute;n o subdelegaci&oacute;n desconcentrada
+            <span *ngIf="user.userInfo.businessCategory !== null">*</span>
+          </h3>
+          <select class="form-control" formControlName="delegation"  style="width: 100%;" required>
+            <option value="-1" >
+              <span>Selecciona una opci&oacute;n</span>
+            </option>
+            <option *ngFor="let del of selectDelegacion" [value]="del.id"   >
+              {{ del.descripcion }}
+            </option>
+          </select>
+        </div>
+        <div class="form-group col-md-4">
+          <h3>A&ntilde;o de revisi&oacute;n *</h3>
+          <select class="form-control" formControlName="cicloActual" style="width:100%" required>
+            <option value="-2" >
+              <span>Selecciona una opci&oacute;n</span>
+            </option>
+            <option *ngFor="let anio of anios">
+              {{anio}}
+            </option>
+          </select>
+        </div>
+        <div class="form-group col-md-4">
+          <h3></h3>
+          <mat-checkbox formControlName="rfc" value="false" >RFC IMSS *</mat-checkbox>
+        </div>
+      </div>
+
+      <br>
+      <div class="row">
+        <div class="col-md-5">
+          <div class="form-group col-md-offset-1 col-md-11" style="
+                          margin-left: 0px; padding-left: 0px; ">
+            <label class="col-sm-7" >
+              <h3>
+                * Campos obligatorios
+              </h3>
+            </label>
+          </div>
+        </div>
+        <div class="col-md-7 text-right">
+          <button type="button" class="btn btn-default" (click)="clear()">Limpiar</button>
+          <button type="button" class="btn btn-primary" (click)="generar()">Generar</button>
+        </div>
+      </div>
+
+
+    </form>
+
+  </div>
+  <br>
+  <br>
+</main>

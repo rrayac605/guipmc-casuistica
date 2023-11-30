@@ -1,0 +1,239 @@
+<app-navbar></app-navbar>
+<app-breadcrumb-ux [titulo]="titulo"></app-breadcrumb-ux>
+
+<!-- CIFRAS CONTROL  -->
+
+<br>
+<br>
+<main class="page">
+    <div class="container">
+
+        <form class="form-inline" [formGroup]="formGroup">
+
+            <div class="row">
+                <p>Ingresa los datos para realizar la búsqueda</p>
+            </div>
+            <br>
+            <div class="row">
+                <div class="form-group col-md-3">
+                    <h3 style="margin-top:0px;">Desde*</h3>
+                    <div class="form-group datepicker-group">
+                        <input class="form-control" type="text" id="fechaInicio1" formControlName="date">
+                        <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+                    </div>
+                </div>
+                <div class="form-group col-md-3">
+                    <h3 style="margin-top:0px;">Hasta*</h3>
+                    <div class="form-group datepicker-group">
+                        <input class="form-control" type="text" id="fechaFin1" formControlName="date2">
+                        <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <h3 style="margin-top:0px;">Tipo de archivo<ng-container
+                            *ngIf="delRegPatForm.value === true || delRegPatForm.value === 'true'">*</ng-container>
+                    </h3>
+                    <select class="form-control" formControlName="fileType" style="width: 100%;">
+                        <option value="-1">
+                            <span>Selecciona una opción</span>
+                        </option>
+                        <option *ngFor="let sts of fileTypeSelect" [value]="sts.descCatalogo">
+                            {{ sts.descCatalogo }}
+                        </option>
+                    </select>
+                </div>
+
+                <div class="col-md-3">
+                    <h3 style="margin-top:0px;">Delegación del Registro Patronal</h3>
+                    <select class="form-control" formControlName="delRegPat"
+                        (change)="checkTipoArchivo($event.target.value)" style="width: 100%;">
+                        <option value="-1">
+                            <span>Selecciona una opción</span>
+                        </option>
+                        <option value=true>
+                            <span>Si</span>
+                        </option>
+                        <option value=false>
+                            <span>No</span>
+                        </option>
+                    </select>
+                </div>
+
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-md-5">
+                    <div class="form-group col-md-offset-1 col-md-11" style="
+                          margin-left: 0px; padding-left: 0px; ">
+                        <label class="col-sm-7" for="email">
+                            <h3>
+                                * Campos obligatorios
+                            </h3>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-md-7 text-right">
+                    <button type="button" class="btn btn-default" (click)="clear()">Limpiar</button>
+                    <button type="button" class="btn btn-primary" (click)="search()">Buscar</button>
+
+                </div>
+            </div>
+            <br>
+            <br>
+
+            <div *ngIf="detalleConsultaDTO != null && detalleConsultaDTO.length > 0">
+                <div class="row">
+                    <h3>Resultados de búsqueda</h3>
+                    <hr class="red">
+                </div>
+                <div class="row table-responsive">
+                    <table class="table table-striped" style="border: solid 1px #DDDDDD; ">
+
+                        <colgroup>
+
+                            <col span="2">
+                            <col span="1" style="border-left: 1px solid #DDDDDD; ">
+                            <col *ngIf="formGroup.controls['delRegPat'].value === false" span="3">
+                            <col *ngIf="formGroup.controls['delRegPat'].value === false"
+                                style="border-left: 1px solid #DDDDDD; ">
+                            <col *ngIf="formGroup.controls['delRegPat'].value === true" span="4">
+                            <col *ngIf="formGroup.controls['delRegPat'].value === true"
+                                style="border-left: 1px solid #DDDDDD; ">
+
+                        </colgroup>
+                        <tbody>
+
+                            <tr>
+                                <th style="text-align: center">Desde:<br>Hasta:</th>
+                                <th style="text-align: center">
+                                    {{formGroup.get('date').value}}<br>{{formGroup.get('date2').value}}</th>
+
+                                <th *ngIf="formGroup.controls['delRegPat'].value === false" style="text-align: center"
+                                    colspan="4">Registros<br>Delegación </th>
+                                <th *ngIf="formGroup.controls['delRegPat'].value === true" style="text-align: center"
+                                    colspan="5">Registros<br>Delegación </th>
+
+                                <th *ngIf="formGroup.controls['delRegPat'].value === false" style="text-align: center"
+                                    colspan="4">Registros <br>Otras delegaciones</th>
+                                <th *ngIf="formGroup.controls['delRegPat'].value === true" style="text-align: center"
+                                    colspan="5">Registros <br>Otras delegaciones</th>
+
+
+                            </tr>
+                            <tr>
+                                <th style="text-align: center">Identificador de archivo</th>
+                                <th *ngIf="formGroup.controls['delRegPat'].value === true" style="text-align: center">
+                                    Delegación</th>
+                                <th style="text-align: center">Totales</th>
+                                <th style="text-align: center">Correctos</th>
+                                <th style="text-align: center">Erróneos</th>
+                                <th style="text-align: center">Duplicados</th>
+                                <th style="text-align: center">Susceptibles de ajustes</th>
+                                <th style="text-align: center">Correctos</th>
+                                <th style="text-align: center">Erróneos</th>
+                                <th style="text-align: center">Duplicados</th>
+                                <th style="text-align: center">Susceptibles de ajustes</th>
+
+                            </tr>
+                            <tr *ngFor="let resuT of detalleConsultaDTO, let i = index">
+                                <td style="text-align: center">{{resuT.cveOrigenArchivo}}</td>
+                                <td *ngIf="formGroup.controls['delRegPat'].value === true" style="text-align: center">
+                                    {{resuT._id}}</td>
+                                <td style="text-align: center">{{resuT.total | number}}</td>
+                                <td style="text-align: center">{{resuT.correcto | number}}</td>
+                                <td style="text-align: center">{{resuT.erroneo | number}}</td>
+                                <td style="text-align: center">{{resuT.duplicado | number}}</td>
+                                <td style="text-align: center">{{resuT.susceptible | number}}</td>
+                                <td style="text-align: center">{{resuT.correctoOtras | number}}</td>
+                                <td style="text-align: center">{{resuT.erroneoOtras | number}}</td>
+                                <td style="text-align: center">{{resuT.duplicadoOtras | number}}</td>
+                                <td style="text-align: center">{{resuT.susceptibleOtras | number}}</td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: center">Totales</td>
+                                <td *ngIf="formGroup.controls['delRegPat'].value === true" style="text-align: center">
+                                </td>
+                                <td style="text-align: center">{{cifrasControlTotales.numTotalRegistros | number}}</td>
+
+
+                                <td style="text-align: center">{{cifrasControlTotales.numRegistrosCorrectos | number}}
+                                </td>
+                                <td style="text-align: center">{{cifrasControlTotales.numRegistrosError | number}}</td>
+                                <td style="text-align: center">{{cifrasControlTotales.numRegistrosDup | number}}</td>
+                                <td style="text-align: center">{{cifrasControlTotales.numRegistrosSus | number}}</td>
+                                <td style="text-align: center">{{cifrasControlTotales.numRegistrosCorrectosOtras |
+                                    number}}</td>
+                                <td style="text-align: center">{{cifrasControlTotales.numRegistrosErrorOtras | number}}
+                                </td>
+                                <td style="text-align: center">{{cifrasControlTotales.numRegistrosDupOtras | number}}
+                                </td>
+                                <td style="text-align: center">{{cifrasControlTotales.numRegistrosSusOtras | number}}
+                                </td>
+                            </tr>
+
+                            <tr>
+
+
+                        </tbody>
+                    </table>
+                    <!--ngb-pagination [(page)]="page" [pageSize]="pageSize" [collectionSize]="detalleConsultaDTO.length"></ngb-pagination-->
+
+                </div>
+                <br>
+                <div class="row">
+
+                    <div class="col-md-12 text-right">
+                        <button type="button" class="btn btn-primary" (click)="reporte()">Descarga y reportes</button>
+
+                    </div>
+
+                </div>
+            </div>
+            <br>
+
+        </form>
+
+        <div class="modal fade" id="dialogMessage">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">{{titDialogo}}</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>{{messDialogo}}</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" (click)="hideMessage()">Regresar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="dialogMessageReporte">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">{{titDialogo}}</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>{{messDialogo}}</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" (click)="downloadPDFReport()">PDF</button>
+
+                        <button type="button" class="btn btn-primary" (click)="downloadXlsReport()">Excel</button>
+                        <button type="button" class="btn btn-primary" (click)="hideMessageReporte()">Regresar</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <br>
+    <br>
+
+    <br>
+</main>
+<ngx-spinner></ngx-spinner>

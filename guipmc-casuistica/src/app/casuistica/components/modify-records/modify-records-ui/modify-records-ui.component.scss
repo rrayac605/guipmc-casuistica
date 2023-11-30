@@ -1,0 +1,41 @@
+table {
+    border: solid 1px;
+    width: 95%;
+    margin-left: 15px;
+    border-color: #DDDDDD;
+    tr {
+        th {
+            text-align: left;
+        }
+    }
+}
+
+.izqText {
+    margin-top: 0px;
+    text-align: left;
+}
+
+.inputTamanioNormal {
+    width: 90%;
+    text-align: left;
+}
+
+.inputTamanioReducido {
+    width: 90%;
+    font-size: 12px;
+}
+
+.inputTamanioNormal100 {
+    width: 95%;
+    text-align: left;
+}
+
+.inputTamanioNormal200 {
+    width: 97%;
+    text-align: left;
+}
+
+.inputTamanioReducido {
+    width: 90%;
+    font-size: 12px;
+}
