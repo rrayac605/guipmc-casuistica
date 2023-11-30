@@ -1,0 +1,37 @@
+.div{
+    text-align: center;
+}
+.table{
+    border: solid 1px #DDDDDD;
+}
+.col-divDerecha{
+    border-right: 1px solid #DDDDDD;
+}
+.col-divIzquierda{
+    border-left: 1px solid #DDDDDD;
+}
+.td{
+    text-align: center;
+    font-weight: bold;
+}
+.td-erroneos{
+    vertical-align: middle;
+    text-align: center;
+    font-weight: bold;
+}
+.th{
+    text-align: center;
+}
+.th-va{
+    vertical-align: middle;
+    text-align: center;
+}
+.th-detalleTexto{
+    text-align: center;
+    font-weight: bold;
+}
+.th-detalleNumero{
+    text-align: center;
+    vertical-align: middle;
+    font-weight: normal;
+}

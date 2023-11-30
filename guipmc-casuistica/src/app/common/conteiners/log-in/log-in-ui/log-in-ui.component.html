@@ -1,0 +1,60 @@
+<br>
+<div class="row text-center">
+    <b class="title-pmc" for=" ">PROGRAMA MONITOREO CASUÍSTICA</b>
+</div>
+<br>
+<br>
+<br>
+<div class="row container">
+    <form class="form-horizontal" [formGroup]="formGroup">
+        <div class=" form-group ">
+            <label class="col-md-4 control-label " for=" ">CURP*:</label>
+            <div class="col-md-4 ">
+                <input id="user" #userInput class="form-control " placeholder="Ingresa tu CURP " type="text" formControlName="user">
+                <span class="error-class">{{ getError('user')}}</span>
+            </div>
+        </div>
+        <div class="form-group ">
+            <label class="col-md-4 control-label " for=" ">Contraseña*:</label>
+            <div class="col-md-4 ">
+                <input id="pass" class="form-control " placeholder="Ingresa tu contraseña " type="password" formControlName="pass">
+                <span class="error-class">{{ getError('pass')}}</span>
+            </div>
+        </div>
+        <br>
+        <div class="form-group ">
+            <div class="col-md-5 " style=" padding-left: 0px; ">
+                <div class="form-group col-md-offset-1 col-md-11 " style=" margin-left: 0px; padding-left: 0px; ">
+                    <label class="col-sm-7 " for="email " style=" padding-left: 0px; ">
+                      <h6>
+                          *Datos obligatorios
+                      </h6>
+                  </label>
+                </div>
+            </div>
+            <div class="center_align " style="text-align: center; padding-right: 250px; ">
+                <!--Enlace temporal solo para mostrar funcionalidad. Se sustituye con botón de abajo-->
+                <a class="btn btn-primary " type="submit" (click)="login()">Ingresar</a>
+                <!--<button class="btn btn-primary active " type="submit ">Ingresar</button>-->
+            </div>
+        </div>
+    </form>
+
+    <div class="modal fade " id="dialogMessage">
+        <div class="modal-dialog ">
+            <div class="modal-content ">
+                <div class="modal-header ">
+                    <h4 class="modal-title ">{{titDialogo}}</h4>
+                </div>
+                <div class="modal-body ">
+                    <p>{{messDialogo}}</p>
+                </div>
+                <div class="modal-footer ">
+                    <button type="button " class="btn btn-primary " (click)="hideMessage()">Regresar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<ngx-spinner></ngx-spinner>

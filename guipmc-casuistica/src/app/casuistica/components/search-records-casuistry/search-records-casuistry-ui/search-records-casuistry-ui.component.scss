@@ -1,0 +1,13 @@
+h3 {
+    font-weight: bolder;
+    margin-bottom: 0px;
+}
+
+.paginator-count {
+    display: block;
+    margin-bottom: -15px;
+}
+
+.hide-last-page::ng-deep ul > li:nth-last-child(2) {
+    display: none;
+}

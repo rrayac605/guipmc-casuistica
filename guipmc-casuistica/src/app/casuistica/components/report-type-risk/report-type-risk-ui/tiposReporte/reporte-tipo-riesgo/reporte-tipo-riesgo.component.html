@@ -1,0 +1,231 @@
+<div class="row">
+    <h3>Reporte de errores por tipo de riesgo
+    </h3>
+    <hr class="red">
+</div>
+<br>
+<div class="row">
+    <h3>{{subtitulo}}</h3>
+
+</div>
+<br>
+<div class="row table-responsive" style="text-align:center">
+    <table class="table table-striped" style="border: solid 1px #DDDDDD; ">
+
+        <colgroup>
+
+            <col span="1" style="border-right: 1px solid #DDDDDD;">
+            <col span="4" >
+            <col span="1" style="border-right: 1px solid #DDDDDD;">
+            <col span="5">
+            <col span="1" style="border-left: 1px solid #DDDDDD;">
+        </colgroup>
+        <tbody>
+
+            <tr>
+                <td style="text-align: center;font-weight: bold; ">Periodo de cómputo:<br>{{ computeYear }}</td>
+
+
+                 <td style="text-align: center; font-weight: bold;" colspan="5"  >
+                    Tipo de riesgo 1 <br>
+                    Accidentes de trabajo
+                </td>
+
+                 <td style="text-align: center;font-weight: bold;"  colspan="5" >
+                    Tipo de riesgo 2<br>
+                    Accidentes de trayecto</td>
+
+
+
+            </tr>
+
+            <tr>
+                <th style="text-align: center"> &nbsp;</th>
+                <th style="text-align: center"> Anteriores</th>
+                <th style="text-align: center">Inmediato anterior</th>
+                <th style="text-align: center">Actual </th>
+                <th style="text-align: center">Posterior </th>
+                <th style="text-align: center">Total </th>
+
+                <th style="text-align: center"> Anteriores</th>
+                <th style="text-align: center">Inmediato anterior</th>
+                <th style="text-align: center">Actual </th>
+                <th style="text-align: center">Posterior </th>
+                <th style="text-align: center">Total </th>
+
+            </tr>
+
+  <!-- REGISTROS -->
+
+            <tr>
+                <th style="text-align: center; font-weight: bold;"> {{detalleRegistroPresentacion.descripcion}}</th>
+                <th style="text-align: center; font-weight: normal;"> {{detalleRegistroPresentacion.numAnteriores | number}}</th>
+                <th style="text-align: center; font-weight: normal;">{{detalleRegistroPresentacion.numInmediato | number}}</th>
+                <th style="text-align: center; font-weight: normal;">{{detalleRegistroPresentacion.numActual | number}} </th>
+                <th style="text-align: center; font-weight: normal;">{{detalleRegistroPresentacion.numPosterior | number}}  </th>
+                <th style="text-align: center; font-weight: normal;">{{detalleRegistroPresentacion.numTotal | number}}  </th>
+
+                <th style="text-align: center; font-weight: normal;"> {{detalleRegistroPresentacion.numAnterioresOtras | number}} </th>
+                <th style="text-align: center; font-weight: normal;">{{detalleRegistroPresentacion.numInmediatoOtras | number}} </th>
+                <th style="text-align: center; font-weight: normal;">{{detalleRegistroPresentacion.numActualOtras | number}}  </th>
+                <th style="text-align: center; font-weight: normal;">{{detalleRegistroPresentacion.numPosteriorOtras | number}}  </th>
+                <th style="text-align: center; font-weight: normal;">{{detalleRegistroPresentacion.numTotalOtras | number}}  </th>
+
+            </tr>
+
+        <!-- DIAS SUBSIDIAS -->
+
+        <tr>
+            <th style="text-align: center; font-weight: bold;"> {{detalleDiasPresentacion.descripcion}}</th>
+            <th style="text-align: center; font-weight: normal;"> {{detalleDiasPresentacion.numAnteriores | number}}</th>
+            <th style="text-align: center; font-weight: normal;">{{detalleDiasPresentacion.numInmediato | number}}</th>
+            <th style="text-align: center; font-weight: normal;">{{detalleDiasPresentacion.numActual | number}} </th>
+            <th style="text-align: center; font-weight: normal;">{{detalleDiasPresentacion.numPosterior | number}}  </th>
+            <th style="text-align: center; font-weight: normal;">{{detalleDiasPresentacion.numTotal | number}}  </th>
+
+            <th style="text-align: center; font-weight: normal;"> {{detalleDiasPresentacion.numAnterioresOtras | number}} </th>
+            <th style="text-align: center; font-weight: normal;">{{detalleDiasPresentacion.numInmediatoOtras | number}} </th>
+            <th style="text-align: center; font-weight: normal;">{{detalleDiasPresentacion.numActualOtras | number}}  </th>
+            <th style="text-align: center; font-weight: normal;">{{detalleDiasPresentacion.numPosteriorOtras | number}}  </th>
+            <th style="text-align: center; font-weight: normal;">{{detalleDiasPresentacion.numTotalOtras | number}}  </th>
+
+        </tr>
+
+
+         <!-- PORCENTAJE -->
+
+         <tr>
+            <th style="text-align: center; font-weight: bold;"> {{detallePorcentajePresentacion.descripcion}}</th>
+            <th style="text-align: center; font-weight: normal;"> {{detallePorcentajePresentacion.numAnteriores | number}}</th>
+            <th style="text-align: center; font-weight: normal;">{{detallePorcentajePresentacion.numInmediato | number}}</th>
+            <th style="text-align: center; font-weight: normal;">{{detallePorcentajePresentacion.numActual | number}} </th>
+            <th style="text-align: center; font-weight: normal;">{{detallePorcentajePresentacion.numPosterior | number}}  </th>
+            <th style="text-align: center; font-weight: normal;">{{detallePorcentajePresentacion.numTotal | number}}  </th>
+
+            <th style="text-align: center; font-weight: normal;"> {{detallePorcentajePresentacion.numAnterioresOtras | number}} </th>
+            <th style="text-align: center; font-weight: normal;">{{detallePorcentajePresentacion.numInmediatoOtras | number}} </th>
+            <th style="text-align: center; font-weight: normal;">{{detallePorcentajePresentacion.numActualOtras | number}}  </th>
+            <th style="text-align: center; font-weight: normal;">{{detallePorcentajePresentacion.numPosteriorOtras | number}}  </th>
+            <th style="text-align: center; font-weight: normal;">{{detallePorcentajePresentacion.numTotalOtras | number}}  </th>
+
+        </tr>
+
+       <!-- DEFUNCIONES -->
+
+       <tr>
+        <th style="text-align: center; font-weight: bold;"> {{detalleDefuncionesPresentacion.descripcion}}</th>
+        <th style="text-align: center; font-weight: normal;"> {{detalleDefuncionesPresentacion.numAnteriores | number}}</th>
+        <th style="text-align: center; font-weight: normal;">{{detalleDefuncionesPresentacion.numInmediato | number}}</th>
+        <th style="text-align: center; font-weight: normal;">{{detalleDefuncionesPresentacion.numActual | number}} </th>
+        <th style="text-align: center; font-weight: normal;">{{detalleDefuncionesPresentacion.numPosterior | number}}  </th>
+        <th style="text-align: center; font-weight: normal;">{{detalleDefuncionesPresentacion.numTotal | number}}  </th>
+
+        <th style="text-align: center; font-weight: normal;"> {{detalleDefuncionesPresentacion.numAnterioresOtras | number}} </th>
+        <th style="text-align: center; font-weight: normal;">{{detalleDefuncionesPresentacion.numInmediatoOtras | number}} </th>
+        <th style="text-align: center; font-weight: normal;">{{detalleDefuncionesPresentacion.numActualOtras | number}}  </th>
+        <th style="text-align: center; font-weight: normal;">{{detalleDefuncionesPresentacion.numPosteriorOtras | number}}  </th>
+        <th style="text-align: center; font-weight: normal;">{{detalleDefuncionesPresentacion.numTotalOtras | number}}  </th>
+
+    </tr>
+
+            <tr>
+                <td style="text-align: center"></td>
+
+
+                 <td style="text-align: center; font-weight: bold;"colspan="5"  >
+                    Tipo de riesgo 3<br>
+                    Enfermedades de trabajo
+                </td>
+
+                 <td style="text-align: center; font-weight: bold;" colspan="5" >
+                    Tipo de riesgo 1 y 3<br>
+                    Accidentes y enfermedades de trabajo</td>
+
+
+
+            </tr>
+
+         <!-- REGISTROS -->
+
+         <tr>
+            <th style="text-align: center; font-weight: bold;"> {{detalleRegistroPresentacion2.descripcion}}</th>
+            <th style="text-align: center; font-weight: normal;"> {{detalleRegistroPresentacion2.numAnteriores | number}}</th>
+            <th style="text-align: center; font-weight: normal;">{{detalleRegistroPresentacion2.numInmediato | number}}</th>
+            <th style="text-align: center; font-weight: normal;">{{detalleRegistroPresentacion2.numActual | number}} </th>
+            <th style="text-align: center; font-weight: normal;">{{detalleRegistroPresentacion2.numPosterior | number}}  </th>
+            <th style="text-align: center; font-weight: normal;">{{detalleRegistroPresentacion2.numTotal | number}}  </th>
+
+            <th style="text-align: center; font-weight: normal;"> {{detalleRegistroPresentacion2.numAnterioresOtras | number}} </th>
+            <th style="text-align: center; font-weight: normal;">{{detalleRegistroPresentacion2.numInmediatoOtras | number}} </th>
+            <th style="text-align: center; font-weight: normal;">{{detalleRegistroPresentacion2.numActualOtras | number}}  </th>
+            <th style="text-align: center; font-weight: normal;">{{detalleRegistroPresentacion2.numPosteriorOtras | number}}  </th>
+            <th style="text-align: center; font-weight: normal;">{{detalleRegistroPresentacion2.numTotalOtras | number}}  </th>
+
+        </tr>
+
+
+            <!-- DIAS SUBSIDIAS -->
+
+        <tr>
+            <th style="text-align: center; font-weight: bold;"> {{detalleDiasPresentacion2.descripcion}}</th>
+            <th style="text-align: center; font-weight: normal;"> {{detalleDiasPresentacion2.numAnteriores | number}}</th>
+            <th style="text-align: center; font-weight: normal;">{{detalleDiasPresentacion2.numInmediato | number}}</th>
+            <th style="text-align: center; font-weight: normal;">{{detalleDiasPresentacion2.numActual | number}} </th>
+            <th style="text-align: center; font-weight: normal;">{{detalleDiasPresentacion2.numPosterior | number}}  </th>
+            <th style="text-align: center; font-weight: normal;">{{detalleDiasPresentacion2.numTotal | number}}  </th>
+
+            <th style="text-align: center; font-weight: normal;"> {{detalleDiasPresentacion2.numAnterioresOtras | number}} </th>
+            <th style="text-align: center; font-weight: normal;">{{detalleDiasPresentacion2.numInmediatoOtras | number}} </th>
+            <th style="text-align: center; font-weight: normal;">{{detalleDiasPresentacion2.numActualOtras | number}}  </th>
+            <th style="text-align: center; font-weight: normal;">{{detalleDiasPresentacion2.numPosteriorOtras | number}}  </th>
+            <th style="text-align: center; font-weight: normal;">{{detalleDiasPresentacion2.numTotalOtras | number}}  </th>
+
+        </tr>
+
+
+         <!-- PORCENTAJE -->
+
+         <tr>
+            <th style="text-align: center; font-weight: bold;"> {{detallePorcentajePresentacion2.descripcion}}</th>
+            <th style="text-align: center; font-weight: normal;"> {{detallePorcentajePresentacion2.numAnteriores | number}}</th>
+            <th style="text-align: center; font-weight: normal;">{{detallePorcentajePresentacion2.numInmediato | number}}</th>
+            <th style="text-align: center; font-weight: normal;">{{detallePorcentajePresentacion2.numActual | number}} </th>
+            <th style="text-align: center; font-weight: normal;">{{detallePorcentajePresentacion2.numPosterior | number}}  </th>
+            <th style="text-align: center; font-weight: normal;">{{detallePorcentajePresentacion2.numTotal | number}}  </th>
+
+            <th style="text-align: center; font-weight: normal;"> {{detallePorcentajePresentacion2.numAnterioresOtras | number}} </th>
+            <th style="text-align: center; font-weight: normal;">{{detallePorcentajePresentacion2.numInmediatoOtras | number}} </th>
+            <th style="text-align: center; font-weight: normal;">{{detallePorcentajePresentacion2.numActualOtras | number}}  </th>
+            <th style="text-align: center; font-weight: normal;">{{detallePorcentajePresentacion2.numPosteriorOtras | number}}  </th>
+            <th style="text-align: center; font-weight: normal;">{{detallePorcentajePresentacion2.numTotalOtras | number}}  </th>
+
+        </tr>
+
+       <!-- DEFUNCIONES -->
+
+       <tr>
+        <th style="text-align: center; font-weight: bold;"> {{detalleDefuncionesPresentacion2.descripcion}}</th>
+        <th style="text-align: center; font-weight: normal;"> {{detalleDefuncionesPresentacion2.numAnteriores | number}}</th>
+        <th style="text-align: center; font-weight: normal;">{{detalleDefuncionesPresentacion2.numInmediato | number}}</th>
+        <th style="text-align: center; font-weight: normal;">{{detalleDefuncionesPresentacion2.numActual | number}} </th>
+        <th style="text-align: center; font-weight: normal;">{{detalleDefuncionesPresentacion2.numPosterior | number}}  </th>
+        <th style="text-align: center; font-weight: normal;">{{detalleDefuncionesPresentacion2.numTotal | number}}  </th>
+
+        <th style="text-align: center; font-weight: normal;"> {{detalleDefuncionesPresentacion2.numAnterioresOtras | number}} </th>
+        <th style="text-align: center; font-weight: normal;">{{detalleDefuncionesPresentacion2.numInmediatoOtras | number}} </th>
+        <th style="text-align: center; font-weight: normal;">{{detalleDefuncionesPresentacion2.numActualOtras | number}}  </th>
+        <th style="text-align: center; font-weight: normal;">{{detalleDefuncionesPresentacion2.numPosteriorOtras | number}}  </th>
+        <th style="text-align: center; font-weight: normal;">{{detalleDefuncionesPresentacion2.numTotalOtras | number}}  </th>
+
+    </tr>
+
+
+
+
+        </tbody>
+    </table>
+
+
+
+
+</div>

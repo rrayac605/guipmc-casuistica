@@ -1,0 +1,33 @@
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
+import { Login } from 'src/app/common/models/security/login';
+import { ValidationForm } from '../../models/validation/validationForm';
+import { DetalleRegistroDTO } from '../../models/validation/detalleRegistroDTO';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class PatronesService {
+
+  private baseEndpoint = '/mspatrones/v1/obtener';
+  private user: Login = new Login();
+  constructor(private http: HttpClient) { }
+
+  //Solo necesita enviar rp
+  public buscar(form: ValidationForm): Observable<DetalleRegistroDTO> {
+    this.user = JSON.parse(localStorage.getItem('user'));
+    const httpHeadersAuth = new HttpHeaders({'Content-Type': 'application/json',
+    Authorization: 'Bearer '.concat(this.user.tokenBody.access_token)});
+    return this.http.post<DetalleRegistroDTO>(this.baseEndpoint, form,
+     {observe: 'response', headers: httpHeadersAuth}).pipe(
+      (response: any) => {
+        return response;
+      },
+      catchError(e => {
+        return throwError(e);
+      })
+    );
+  }
+}

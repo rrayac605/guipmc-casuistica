@@ -1,0 +1,164 @@
+<div class="row">
+    <h3>Reporte de casuística por consecuencia
+    </h3>
+    <hr class="red">
+</div>
+<br>
+<div class="row">
+    <h3>{{subtitulo}}</h3>
+ </div>
+<br>
+<div class="row padding-0">
+
+    <div class="col-md-6 padding-0">
+        <table class="table table-striped" style="border: solid 1px #DDDDDD; ">
+            <tbody>
+                 <tr>
+                   <td style="text-align: center; font-weight: bolder;" colspan="5"  >
+                        Tipo de riesgo 1 <br>
+                        Accidentes de trabajo
+                    </td>
+                 </tr>
+                 <tr>
+                    <th style="text-align: center"> Clave</th>
+                    <th style="text-align: center">Concecuencia</th>
+                    <th style="text-align: center">Registros </th>
+                    <th style="text-align: center">Días subsidiados </th>
+                    <th style="text-align: center">Porcentaje de incapacidad </th>
+                 </tr>
+                 <tr  *ngFor="let resuC1 of detalleConsecuencia1Pres  let i = index">
+
+                    <th style="text-align: center; font-weight: normal;">{{resuC1.clave}}</th>
+                    <th style="text-align: center; font-weight: normal;">{{resuC1.descripcion}}</th>
+                    <th style="text-align: center; font-weight: normal;">{{resuC1.numRegistro | number}}</th>
+                    <th style="text-align: center; font-weight: normal;">{{resuC1.numDias | number}} </th>
+                    <th style="text-align: center; font-weight: normal;">{{resuC1.porcentaje | number}}  </th>
+                 </tr>
+
+                 <tr  >
+
+                    <th style="text-align: center; font-weight: normal;" colspan="2">Total</th>
+
+                    <th style="text-align: center; font-weight: normal;">{{totalConsecuencia1.numRegistro  | number}}</th>
+                    <th style="text-align: center; font-weight: normal;">{{totalConsecuencia1.numDias | number}} </th>
+                    <th style="text-align: center; font-weight: normal;">{{totalConsecuencia1.porcentaje | number}}  </th>
+                 </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-6 padding-0">
+
+        <table class="table table-striped" style="border: solid 1px #DDDDDD; ">
+            <tbody>
+                 <tr>
+                   <td style="text-align: center; font-weight: bolder;" colspan="5"  >
+                        Tipo de riesgo 2 <br>
+                        Accidentes de trayecto
+                    </td>
+                 </tr>
+                 <tr>
+                    <th style="text-align: center"> Clave</th>
+                    <th style="text-align: center">Concecuencia</th>
+                    <th style="text-align: center">Registros </th>
+                    <th style="text-align: center">Días subsidiados </th>
+                    <th style="text-align: center">Porcentaje de incapacidad </th>
+                 </tr>
+                 <tr  *ngFor="let resuC2 of detalleConsecuencia2Pres  let i = index">
+
+                    <th style="text-align: center; font-weight: normal;">{{resuC2.clave}}</th>
+                    <th style="text-align: center; font-weight: normal;">{{resuC2.descripcion}}</th>
+                    <th style="text-align: center; font-weight: normal;">{{resuC2.numRegistro | number}}</th>
+                    <th style="text-align: center; font-weight: normal;">{{resuC2.numDias | number}} </th>
+                    <th style="text-align: center; font-weight: normal;">{{resuC2.porcentaje | number}}  </th>
+                 </tr>
+
+                 <tr  >
+
+                    <th style="text-align: center; font-weight: normal;" colspan="2">Total</th>
+
+                    <th style="text-align: center; font-weight: normal;">{{totalConsecuencia2.numRegistro | number}}</th>
+                    <th style="text-align: center; font-weight: normal;">{{totalConsecuencia2.numDias | number}} </th>
+                    <th style="text-align: center; font-weight: normal;">{{totalConsecuencia2.porcentaje | number}}  </th>
+                 </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="row padding-0">
+
+    <div class="col-md-6 padding-0">
+        <table class="table table-striped" style="border: solid 1px #DDDDDD; ">
+            <tbody>
+                 <tr>
+                   <td style="text-align: center; font-weight: bolder;" colspan="5"  >
+                        Tipo de riesgo 3 <br>
+                       Enfermedades de trabajo
+                    </td>
+                 </tr>
+                 <tr>
+                    <th style="text-align: center"> Clave</th>
+                    <th style="text-align: center">Concecuencia</th>
+                    <th style="text-align: center">Registros </th>
+                    <th style="text-align: center">Días subsidiados </th>
+                    <th style="text-align: center">Porcentaje de incapacidad </th>
+                 </tr>
+                 <tr  *ngFor="let resuC3 of detalleConsecuencia3Pres  let i = index">
+
+                    <th style="text-align: center; font-weight: normal;">{{resuC3.clave}}</th>
+                    <th style="text-align: center; font-weight: normal;">{{resuC3.descripcion}}</th>
+                    <th style="text-align: center; font-weight: normal;">{{resuC3.numRegistro | number}}</th>
+                    <th style="text-align: center; font-weight: normal;">{{resuC3.numDias | number}} </th>
+                    <th style="text-align: center; font-weight: normal;">{{resuC3.porcentaje | number}}  </th>
+                 </tr>
+
+                 <tr  >
+
+                    <th style="text-align: center; font-weight: normal;" colspan="2">Total</th>
+
+                    <th style="text-align: center; font-weight: normal;">{{totalConsecuencia3.numRegistro | number}}</th>
+                    <th style="text-align: center; font-weight: normal;">{{totalConsecuencia3.numDias | number}} </th>
+                    <th style="text-align: center; font-weight: normal;">{{totalConsecuencia3.porcentaje | number}}  </th>
+                 </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-6 padding-0">
+
+        <table class="table table-striped" style="border: solid 1px #DDDDDD; ">
+            <tbody>
+                 <tr>
+                   <td style="text-align: center; font-weight: bolder;" colspan="5"  >
+                    Tipo de riesgo 1 y 3 <br>
+                   Accidentes y enfermedades de trabajo
+                    </td>
+                 </tr>
+                 <tr>
+                    <th style="text-align: center"> Clave</th>
+                    <th style="text-align: center">Concecuencia</th>
+                    <th style="text-align: center">Registros </th>
+                    <th style="text-align: center">Días subsidiados </th>
+                    <th style="text-align: center">Porcentaje de incapacidad </th>
+                 </tr>
+                 <tr  *ngFor="let resuC4 of detalleConsecuencia4Pres  let i = index">
+
+                    <th style="text-align: center; font-weight: normal;">{{resuC4.clave}}</th>
+                    <th style="text-align: center; font-weight: normal;">{{resuC4.descripcion}}</th>
+                    <th style="text-align: center; font-weight: normal;">{{resuC4.numRegistro | number}}</th>
+                    <th style="text-align: center; font-weight: normal;">{{resuC4.numDias | number}} </th>
+                    <th style="text-align: center; font-weight: normal;">{{resuC4.porcentaje | number}}  </th>
+                 </tr>
+                 <tr  >
+
+                    <th style="text-align: center; font-weight: normal;" colspan="2">Total</th>
+
+                    <th style="text-align: center; font-weight: normal;">{{totalConsecuencia4.numRegistro | number}}</th>
+                    <th style="text-align: center; font-weight: normal;">{{totalConsecuencia4.numDias | number}} </th>
+                    <th style="text-align: center; font-weight: normal;">{{totalConsecuencia4.porcentaje | number}}  </th>
+                 </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+

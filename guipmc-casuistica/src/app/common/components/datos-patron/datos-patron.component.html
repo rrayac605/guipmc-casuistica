@@ -1,0 +1,106 @@
+  <!--       TABLA DATOS DEL PATRON     -->
+  <div class="row table-responsive">
+    <table class="table  table-striped" style="border: solid 1px #DDDDDD; width: 95%; ">
+                
+  
+
+        <tbody>
+            <tr>
+                <th style="text-align: center;">
+                    Datos del patrón
+                </th>
+            </tr>
+            <tr>
+                <td style="text-align: center">
+                    <div class="row">
+                        <div class="col-md-4 izqText">
+                            <p>Registro Patronal*</p>
+
+
+                            <input class="form-control inputTamanioNormal"
+                                   class="form-control inputTamanioNormal"
+                                   id="registroPatronal">
+                               
+                        </div>
+                        <div class="col-md-8 izqText">
+                            <p>Razón social del patrón *</p>
+
+                            <input class="form-control inputTamanioNormal100" 
+                        
+                            [value]="patron.desRazonSocial !== undefined? patron.desRazonSocial : '' "
+                               readonly>
+                        
+
+                        </div>
+
+                         
+                    </div>
+                    <br>
+
+                    <div class="row">
+                        <div class="col-md-4 izqText">
+                            <p>Clave fracción </p>
+
+                            <input class="form-control inputTamanioNormal" 
+                             readonly>
+
+                        </div>
+                        <div class="col-md-4 izqText">
+                            <p>Prima SRT</p>
+
+                            <input class="form-control inputTamanioNormal" readonly>
+                        </div>
+                        <div class="col-md-4 izqText">
+                            <p>Clase</p>
+
+                            <input class="form-control inputTamanioNormal"  readonly>
+                        </div>
+
+                    </div>
+                    <br>
+                    <div class="row">
+
+                        <div class="col-md-12 izqText">
+                            <p>Actividad económica </p>
+
+                            <input class="form-control inputTamanioNormal200"  readonly>
+
+
+                        </div>
+
+
+                    </div>
+                    <br>
+
+                    <div class="row">
+
+                        <div class="col-md-4 izqText">
+                            <p>Delegación del Registro</p>
+
+                            <input class="form-control inputTamanioNormal"  readonly>
+
+                        </div>
+                        <div class="col-md-4 izqText">
+                            <p>Subdelegación del Registro</p>
+
+                            <input class="form-control inputTamanioNormal"  readonly>
+
+
+                        </div>
+                        <div class="col-md-4 izqText">
+                            <p>RFC patronal *</p>
+
+                            <input class="form-control inputTamanioNormal"  readonly>
+
+                        </div>
+
+
+
+                    </div>
+                    <br>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+S

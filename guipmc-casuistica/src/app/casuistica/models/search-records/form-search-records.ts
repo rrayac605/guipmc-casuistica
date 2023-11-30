@@ -1,0 +1,37 @@
+export class FormSearchRecords {
+  fromMonth: string;
+  fromYear: string;
+  toMonth: string;
+  toYear: string;
+  cveDelegacion: string;
+  cveSubdelegacion: string;
+  desDelegacion: string;
+  desSubdelegacion: string;
+  cveTipoRiesgo: string;
+  cveConsecuencia: string;
+  cveCasoRegistro: string;
+  cveEstadoRegistro: string;
+  cveEstadoRegistroList: string[];
+  campoSugerido: string;
+  cveSituacionRegistro: string;
+  numNss: string;
+  refRegistroPatronal: string;
+  cveEstadoArchivo: string;
+  toDay: string;
+  fromDay: string;
+  cveIdAccionRegistro: string;
+  rfc: string;
+  cveClase: string;
+  cveFraccion: string;
+  cveLaudo: string;
+  page?: number;
+  totalElements?: number;
+  modificados?: boolean;
+  origenAlta?: string;
+  totalElementsMovement?: number;
+  changesMinorThanMovements?: number;
+  size?: number;
+  isOperative?: boolean;
+  isApprover?: boolean;
+  isCasuistry?: boolean;
+}

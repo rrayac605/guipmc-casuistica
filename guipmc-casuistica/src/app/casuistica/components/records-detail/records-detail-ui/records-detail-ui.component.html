@@ -1,0 +1,649 @@
+<app-navbar></app-navbar>
+<app-breadcrumb-ux [titulo]="titulo"></app-breadcrumb-ux>
+
+<main class="page">
+    <div class="container">
+        <form class="form-inline">
+
+            <br>
+
+            <!--         TABLA DATOS DEL ASEGURADO     -->
+
+
+            <div class="row table-responsive">
+                <table class="table  table-striped" style="border: solid 1px #DDDDDD; width: 95%; ">
+
+                    <tbody>
+                        <tr>
+                            <th style="text-align: center">Datos del Asegurado</th>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center">
+                                <div class="row">
+                                    <div class="col-sm-4" style="margin-top:0px; text-align: left;">
+                                        <p>NSS</p>
+                                        <input class="form-control inputTamanioNormal" name="numNss"
+                                            [(ngModel)]="info.aseguradoDTO.numNss" type="text" disabled>
+                                    </div>
+
+                                    <div class="col-sm-4" style="margin-top:0px; text-align: left;">
+                                        <p>CURP</p>
+                                        <input class="form-control inputTamanioNormal" type="text" name="refCurp"
+                                            [(ngModel)]="info.aseguradoDTO.refCurp" disabled>
+                                    </div>
+
+                                </div>
+                                <br>
+                                <div class="row">
+
+                                    <div class="col-md-8" style="margin-top:0px; text-align: left;">
+                                        <p>Nombre(s) y apellidos</p>
+
+                                        <input class="form-control inputTamanioNormal" style="width: 95%;" type="text"
+                                            [value]="info.aseguradoDTO.nombreCompleto" disabled>
+
+                                    </div>
+
+
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-md-4" style="margin-top:0px; text-align: left;">
+                                        <p> Delegación de NSS</p>
+                                        <input class="form-control inputTamanioNormal" type="text" disabled
+                                            [value]="info.aseguradoDTO.desDelegacionNss !== undefined ? info.aseguradoDTO.desDelegacionNss : ''">
+                                    </div>
+
+                                    <div class="col-sm-4" style="margin-top:0px; text-align: left;">
+                                        <p>Subdelegación del NSS</p>
+                                        <input class="form-control inputTamanioNormal" type="text" disabled
+                                            [value]="info.aseguradoDTO.desSubDelNss !== undefined ? info.aseguradoDTO.desSubDelNss : ''">
+                                    </div>
+
+                                    <div class="col-md-4" style="margin-top:0px; text-align: left;">
+                                        <p>UMF de adscripción</p>
+                                        <input class="form-control inputTamanioNormal" type="text" disabled
+                                            [value]="info.aseguradoDTO.desUmfAdscripcion !== undefined? info.aseguradoDTO.desUmfAdscripcion : ''">
+                                    </div>
+
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-sm-4" style="margin-top:0px; text-align: left;">
+                                        <p>Delegación Atención del NSS</p>
+                                        <input class="form-control inputTamanioNormal" type="text" disabled
+                                            [value]="info.aseguradoDTO.desDelegacionAtencion !== undefined? info.aseguradoDTO.desDelegacionAtencion : ''">
+                                    </div>
+                                    <div class="col-sm-4" style="margin-top:0px; text-align: left;">
+                                        <p>Subdelegación de Atención del NSS</p>
+                                        <input class="form-control inputTamanioNormal" type="text" disabled
+                                            [value]="info.aseguradoDTO.desSubDelAtencion !== undefined? info.aseguradoDTO.desSubDelAtencion : ''">
+                                    </div>
+                                    <div class="col-sm-4" style="margin-top:0px; text-align: left;">
+                                        <p>UMF de expedición</p>
+                                        <input class="form-control inputTamanioNormal" type="text" disabled
+                                            [value]="info.aseguradoDTO.desUmfExp !== undefined? info.aseguradoDTO.desUmfExp : ''">
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-md-4" style="margin-top:0px; text-align: left;">
+                                        <p>UMF pagadora</p>
+                                        <input class="form-control inputTamanioNormal" type="text" disabled
+                                            [value]="info.aseguradoDTO.desUmfPagadora !== undefined? info.aseguradoDTO.desUmfPagadora : ''">
+                                    </div>
+                                    <div class="col-sm-4" style="margin-top:0px; text-align: left;">
+                                        <p>Salario diario</p>
+                                        <input class="form-control inputTamanioNormal" type="text" disabled
+                                            [value]="info.aseguradoDTO.numSalarioDiario !== undefined? info.aseguradoDTO.numSalarioDiario : ''">
+                                    </div>
+                                    <div class="col-sm-4" style="margin-top:0px; text-align: left;">
+                                        <p>Ocupación</p>
+                                        <input class="form-control inputTamanioNormal" type="text" disabled
+                                            [value]="info.aseguradoDTO.desOcupacion !== undefined? info.aseguradoDTO.desOcupacion : ''">
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-sm-4" style="margin-top:0px; text-align: left;">
+                                        <p style="margin-top:0px;">Código de error</p>
+                                        <input class="form-control inputTamanioNormal" type="text" disabled
+                                            [value]="info.aseguradoDTO.desCodigoError !== undefined? info.aseguradoDTO.desCodigoError : ''">
+                                    </div>
+
+                                    <div class="col-sm-4" style="margin-top:0px; text-align: left;">
+                                        <p style="margin-top:0px;">Año ciclo </p>
+                                        <input class="form-control inputTamanioNormal" type="text" disabled
+                                            [value]="info.aseguradoDTO.numCicloAnual !== undefined? info.aseguradoDTO.numCicloAnual : ''">
+                                    </div>
+                                    <div class="col-md-4" style="margin-top:0px; text-align: left;">
+                                        <p>Tipo de registro </p>
+                                        <input class="form-control inputTamanioNormal" type="text" disabled
+                                            [value]="info.aseguradoDTO.desCasoRegistro !== undefined? info.aseguradoDTO.desCasoRegistro : ''">
+                                    </div>
+
+
+
+
+                                </div>
+                            </td>
+
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!--      FIN TABLA DATOS DEL ASEGURADO     -->
+
+
+
+
+            <br>
+
+
+            <!--       TABLA DE LA INCAPACIDAD     -->
+
+
+
+            <div class="row table-responsive">
+                <table class="table  table-striped" style="border: solid 1px #DDDDDD; width: 95%; ">
+
+                    <tbody>
+                        <tr>
+                            <th style="text-align: center">
+                                Datos de la incapacidad
+                            </th>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center">
+                                <div class="row">
+                                    <div class="col-md-4" style="margin-top:0px; text-align: left;">
+                                        <p>Fecha de inicio </p>
+                                        <input class="form-control inputTamanioNormal" type="text" disabled
+                                            [value]="info.incapacidadDTO.fecInicio | date:'dd/MM/yyyy'">
+                                    </div>
+
+                                    <div class="col-sm-4" style="margin-top:0px; text-align: left;">
+                                        <p>Fecha de atención</p>
+                                        <input class="form-control inputTamanioNormal" type="text" disabled
+                                            [value]="info.incapacidadDTO.fecAtencion | date:'dd/MM/yyyy'">
+                                    </div>
+
+                                    <div class="col-sm-4" style="margin-top:0px; text-align: left;">
+                                        <p>Fecha de accidente</p>
+                                        <input class="form-control inputTamanioNormal" type="text" disabled
+                                            [value]="info.incapacidadDTO.fecAccidente | date:'dd/MM/yyyy'">
+                                    </div>
+
+
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-md-4" style="margin-top:0px; text-align: left;">
+                                        <p>Fecha inicio de pensión</p>
+                                        <input class="form-control inputTamanioNormal" type="text" disabled
+                                            [value]="info.incapacidadDTO.fecIniPension | date:'dd/MM/yyyy'">
+                                    </div>
+
+                                    <div class="col-sm-4" style="margin-top:0px; text-align: left;">
+                                        <p>Fecha de alta</p>
+                                        <input class="form-control inputTamanioNormal" type="text" disabled
+                                            [value]="info.incapacidadDTO.fecAltaIncapacidad | date:'dd/MM/yyyy'">
+                                    </div>
+
+                                    <div class="col-sm-4" style="margin-top:0px; text-align: left;">
+                                        <p>Fecha de expedici&oacute;n del dictamen</p>
+                                        <input class="form-control inputTamanioNormal" type="text" disabled
+                                            [value]="info.incapacidadDTO.fecExpDictamen | date:'dd/MM/yyyy'">
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-md-4" style="margin-top:0px; text-align: left;">
+                                        <p>Fecha fin </p>
+                                        <input class="form-control inputTamanioNormal" type="text" disabled
+                                            [value]="info.incapacidadDTO.fecFin | date:'dd/MM/yyyy'">
+                                    </div>
+
+                                    <div class="col-sm-4" style="margin-top:0px; text-align: left;">
+                                        <p>Días subsidiados</p>
+                                        <input class="form-control inputTamanioNormal" type="text" disabled
+                                            [value]="info.incapacidadDTO.numDiasSubsidiados !== undefined? info.incapacidadDTO.numDiasSubsidiados : ''">
+                                    </div>
+
+                                    <div class="col-sm-4" style="margin-top:0px; text-align: left;">
+                                        <p>Porcentaje de incapacidad</p>
+                                        <input class="form-control inputTamanioNormal" type="text" disabled
+                                            [value]="info.incapacidadDTO.porPorcentajeIncapacidad !== undefined? info.incapacidadDTO.porPorcentajeIncapacidad : ''">
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-md-4" style="margin-top:0px; text-align: left;">
+                                        <p>Causa externa</p>
+                                        <input class="form-control inputTamanioNormal" type="text" disabled
+                                            [value]="info.incapacidadDTO.desCausaExterna !== undefined? info.incapacidadDTO.desCausaExterna : ''">
+                                    </div>
+
+                                    <div class="col-sm-4" style="margin-top:0px; text-align: left;">
+                                        <p style="margin-top:0px;">Naturaleza</p>
+                                        <input class="form-control inputTamanioNormal" type="text" disabled
+                                            [value]="info.incapacidadDTO.desNaturaleza !== undefined? info.incapacidadDTO.desNaturaleza : ''">
+                                    </div>
+
+                                    <div class="col-sm-4" style="margin-top:0px; text-align: left;">
+                                        <p style="margin-top:0px;">Riesgo físico</p>
+                                        <input class="form-control inputTamanioNormal" type="text" disabled
+                                            [value]="info.incapacidadDTO.desRiesgoFisico !== undefined? info.incapacidadDTO.desRiesgoFisico : ''">
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-md-4" style="margin-top:0px; text-align: left;">
+                                        <p>Acto inseguro</p>
+                                        <input class="form-control inputTamanioNormal" type="text" disabled
+                                            [value]="info.incapacidadDTO.desActoInseguro !== undefined? info.incapacidadDTO.desActoInseguro : ''">
+                                    </div>
+
+                                    <div class="col-sm-4" style="margin-top:0px; text-align: left;">
+                                        <p style="margin-top:0px;">Tipo de riesgo</p>
+                                        <input class="form-control inputTamanioNormal" type="text" disabled
+                                            [value]="info.incapacidadDTO.desTipoRiesgo !== undefined? info.incapacidadDTO.desTipoRiesgo : ''">
+                                    </div>
+
+                                    <div class="col-sm-4" style="margin-top:0px; text-align: left;">
+                                        <p style="margin-top:0px;">Consecuencia</p>
+                                        <input class="form-control inputTamanioNormal" type="text" disabled
+                                            [value]="strDescConsecuencia" tooltip="{{ strDescConsecuencia }}">
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-md-4" style="margin-top:0px; text-align: left;">
+                                        <p>Laudo</p>
+                                        <input class="form-control inputTamanioNormal" type="text" disabled
+                                            [value]="info.incapacidadDTO.desLaudo !== undefined? info.incapacidadDTO.desLaudo : ''">
+                                    </div>
+
+                                    <div class="col-sm-4" style="margin-top:0px; text-align: left;">
+                                        <p>Matrícula del médico tratante </p>
+                                        <input class="form-control inputTamanioNormal" type="text" disabled
+                                            [value]="info.incapacidadDTO.numMatMedTratante !== undefined? info.incapacidadDTO.numMatMedTratante : ''">
+                                    </div>
+
+                                    <div class="col-sm-4" style="margin-top:0px; text-align: left;">
+                                        <p>Matrícula del médico que autoriza CDST</p>
+                                        <input class="form-control inputTamanioNormal" type="text" disabled
+                                            [value]="info.incapacidadDTO.numMatMedAutCdst !== undefined? info.incapacidadDTO.numMatMedAutCdst : ''">
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-md-6" style="margin-top:0px; text-align: left;">
+                                        <p>C&oacute;digo del diagn&oacute;stico</p>
+                                        <input class="form-control inputTamanioNormal" type="text" disabled
+                                            [value]="info.incapacidadDTO.desCodigoDiagnostico !== undefined? info.incapacidadDTO.desCodigoDiagnostico : ''">
+                                    </div>
+
+                                    <div class="col-sm-6" style="margin-top:0px; text-align: left;">
+                                        <p>Tipo de incapacidad</p>
+                                        <input class="form-control inputTamanioNormal" type="text" disabled
+                                            [value]="info.incapacidadDTO.desTipoIncapacidad !== undefined? info.incapacidadDTO.desTipoIncapacidad : ''">
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-md-6" style="margin-top:0px; text-align: left;">
+                                        <p>Tipo Dictamen</p>
+                                        <input class="form-control inputTamanioNormal" type="text" disabled
+                                            [value]="info.incapacidadDTO?.bitacoraDictamen !== null ? getTipoDictamen() : ''">
+                                    </div>
+                                    <div class="col-sm-6" style="margin-top:0px; text-align: left;">
+                                        <p>Número de folio</p>
+                                        <input class="form-control inputTamanioNormal" type="text" disabled
+                                            [value]="info.incapacidadDTO?.bitacoraDictamen !== null ? getNumeroDictamen() : ''">
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-md-6" style="margin-top:0px; text-align: left;">
+                                        <p>Nombre archivo dictamen</p>
+                                        <input class="form-control inputTamanioNormal" type="text" disabled
+                                            [value]="info.incapacidadDTO?.bitacoraDictamen !== null ? getNombreDictamen() : ''">
+                                    </div>
+                                    <div class="col-sm-2" style="margin-top:15px; text-align: left;">
+                                        <button type="button" class="btn btn-primary" (click)="generar()">Ver
+                                            dictamen</button>
+                                    </div>
+                                    <div class="col-sm-2" style="margin-top:15px; text-align: left;">
+                                        <button type="button" (click)="dictamen()" *ngIf="showBtnDictamen"
+                                            class="btn btn-success-pmc">Dictamen SIST</button>
+                                    </div>
+
+                                </div>
+
+                            </td>
+
+
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!--      FIN TABLA DE LA INCAPACIDAD     -->
+
+
+
+            <br>
+
+
+            <!--       TABLA DATOS DEL PATRON     -->
+            <div class="row table-responsive">
+                <table class="table  table-striped" style="border: solid 1px #DDDDDD; width: 95%; ">
+
+
+
+                    <tbody>
+                        <tr>
+                            <th style="text-align: center;">
+                                Datos del patrón
+                            </th>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center">
+                                <div class="row">
+                                    <div class="col-md-4 izqText">
+                                        <p>Registro Patronal</p>
+
+
+                                        <input class="form-control inputTamanioNormal"
+                                            [value]="info.patronDTO.refRegistroPatronal !== undefined ? info.patronDTO.refRegistroPatronal : ''"
+                                            tooltip="{{info.patronDTO.refRegistroPatronal}}" id="registroPatronal"
+                                            readonly>
+
+                                    </div>
+                                    <div class="col-md-8 izqText">
+                                        <p>Razón social del patrón </p>
+
+                                        <input class="form-control inputTamanioNormal100"
+                                            [value]="info.patronDTO.desRazonSocial != undefined ? info.patronDTO.desRazonSocial : ''"
+                                            tooltip="{{info.patronDTO.desRazonSocial}}" placement="top" readonly>
+
+
+                                    </div>
+
+
+                                </div>
+                                <br>
+
+                                <div class="row">
+                                    <div class="col-md-4 izqText">
+                                        <p>Clave fracción </p>
+
+                                        <input class="form-control inputTamanioNormal"
+                                            [value]="info.patronDTO.cveFraccion !== undefined ? info.patronDTO.cveFraccion : ''"
+                                            tooltip="{{info.patronDTO.cveFraccion}}" readonly>
+
+                                    </div>
+                                    <div class="col-md-4 izqText">
+                                        <p>Prima SRT</p>
+
+                                        <input class="form-control inputTamanioNormal"
+                                            [value]="info.patronDTO.desPrima !== undefined ? info.patronDTO.desPrima : ''"
+                                            tooltip="{{info.patronDTO.desPrima}}" placement="top" readonly>
+                                    </div>
+                                    <div class="col-md-4 izqText">
+                                        <p>Clase </p>
+
+                                        <input class="form-control inputTamanioNormal"
+                                            [value]="info.patronDTO.desClase !== undefined ? info.patronDTO.desClase : ''"
+                                            tooltip="{{info.patronDTO.desClase}}" placement="top" readonly>
+                                    </div>
+
+                                </div>
+                                <br>
+                                <div class="row">
+
+                                    <div class="col-md-12 izqText">
+                                        <p>Actividad económica </p>
+
+                                        <input class="form-control inputTamanioNormal200"
+                                            [value]="info.patronDTO.desFraccion !== undefined ? info.patronDTO.desFraccion : ''"
+                                            tooltip="{{info.patronDTO.desFraccion}}" readonly>
+
+
+                                    </div>
+
+
+                                </div>
+                                <br>
+
+                                <div class="row">
+
+                                    <div class="col-md-4 izqText">
+                                        <p>Delegación del Registro</p>
+
+                                        <input class="form-control inputTamanioNormal"
+                                            [value]="info.patronDTO.desDelRegPatronal !== undefined ? info.patronDTO.desDelRegPatronal : ''"
+                                            tooltip="{{info.patronDTO.desDelRegPatronal}}" placement="top" readonly>
+
+                                    </div>
+                                    <div class="col-md-4 izqText">
+                                        <p>Subdelegación del Registro</p>
+
+                                        <input class="form-control inputTamanioNormal"
+                                            [value]="info.patronDTO.desSubDelRegPatronal !== undefined ? info.patronDTO.desSubDelRegPatronal : ''"
+                                            tooltip="{{info.patronDTO.desSubDelRegPatronal}}" placement="top" readonly>
+
+
+                                    </div>
+                                    <div class="col-md-4 izqText">
+                                        <p>RFC patronal </p>
+
+                                        <input class="form-control inputTamanioNormal"
+                                            [value]="info.patronDTO.desRfc !== undefined ? info.patronDTO.desRfc : ''"
+                                            tooltip="{{info.patronDTO.desRfc}}" placement="top" readonly>
+
+                                    </div>
+
+
+
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="row table-responsive">
+                <table class="table  table-striped" style="border: solid 1px #DDDDDD; width: 95%; ">
+                    <tbody>
+                        <tr>
+                            <th style="text-align: center">
+                                Datos del registro
+                            </th>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center">
+                                <div class="row">
+                                    <div class="col-md-4" style="margin-top:0px; text-align: left;">
+                                        <p>Estado del registro</p>
+                                        <input class="form-control inputTamanioNormal" type="text" disabled
+                                            [value]="getEstadoResgistro()" tooltip="{{ getEstadoResgistro() }}">
+                                    </div>
+
+                                    <div class="col-md-4" style="margin-top:0px; text-align: left;">
+                                        <p>Acci&oacute;n del registro</p>
+                                        <input class="form-control inputTamanioNormal" type="text" disabled
+                                            [value]="getAccionRegistro()" tooltip="{{ getAccionRegistro() }}">
+                                    </div>
+
+                                    <div class="col-md-4" style="margin-top:0px; text-align: left;">
+                                        <p>Situaci&oacute;n del registro</p>
+                                        <input class="form-control inputTamanioNormal" type="text" disabled
+                                            [value]="getSituacionRegistro()" tooltip="{{ getSituacionRegistro() }}">
+                                    </div>
+                                </div>
+                                <br />
+                                <div class="row">
+                                    <div class="col-md-4" style="margin-top:0px; text-align: left;">
+                                        <p>Fecha de cambio</p>
+                                        <input class="form-control inputTamanioNormal" type="text" disabled
+                                            [value]="info.aseguradoDTO.fecActualizacion | dateString">
+                                    </div>
+                                    <div class="col-md-4" style="margin-top:0px; text-align: left;">
+                                        <p>Hora del cambio</p>
+                                        <input class="form-control inputTamanioNormal" type="text" disabled
+                                            [value]="info.aseguradoDTO.fecActualizacion | dateString : 'hours'">
+                                    </div>
+                                    <div class="col-md-4" style="margin-top:0px; text-align: left;">
+                                        <p>Cuenta de Usuario</p>
+                                        <input class="form-control inputTamanioNormal" type="text" disabled
+                                            [value]="getUsuarioModificador()" tooltip="{{ getUsuarioModificador() }}">
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <br>
+            <div class="row">
+
+                <div class="col-md-12 text-right">
+                    <button type="button" (click)="regresar()" class="btn btn-default">Regresar</button>
+                    <button type="button" *ngIf="visualizaPerfil3 && isOperative && ((!selectedItem.isChange && !info.isPending)
+                        || (selectedItem.isChange && selectedItem.cveOrigenArchivo === 'MN' && !info.idOrigenAlta
+                        && info.cveSituacionRegistro === 1 && !info.isPending)) && isBaja" (click)="modificar()"
+                        class="btn btn-default" id="btnModificar">Modificar</button>
+                    <button type="button" *ngIf="visualizaPerfil3 && isOperative && ((!selectedItem.isChange && !info.isPending)
+                        || (selectedItem.isChange && selectedItem.cveOrigenArchivo === 'MN' && !info.idOrigenAlta
+                        && info.cveSituacionRegistro === 1 && !info.isPending)) && isBaja" (click)="eliminar()"
+                        class="btn btn-default" id="btnEliminar">Eliminar</button>
+                    <button type="button" (click)="confirmarSinCambiosConfirmacion()" class="btn btn-default"
+                        id="btnConfirmarSinCambios"
+                        *ngIf="(selectedItem.cveEstadoRegistro == '4' || selectedItem.cveEstadoRegistro == '8') && selectedItem.cveSituacionRegistro != 2">Confirmar
+                        sin cambios</button>
+                    <button type="button"
+                        *ngIf="visualizaPerfil4 && isApprover && selectedItem.cveSituacionRegistro == 2"
+                        (click)="aprobar()" class="btn btn-default" id="btnAprobar">Aprobar</button>
+                </div>
+            </div>
+        </form>
+
+
+
+
+
+    </div>
+    <br>
+    <br>
+    <div class="modal fade" id="dialogMessage">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">{{titDialogo}}</h4>
+                </div>
+                <div class="modal-body">
+                    <p>{{messDialogo}}</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" (click)="hideMessage()">Regresar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="modal fade" id="dialogMessageResult">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">{{titDialogo}}</h4>
+                </div>
+                <div class="modal-body">
+                    <p>{{messDialogo}}</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" (click)="returnMoves()">Regresar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="dialogMessageConfirm">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">{{titDialogo}}</h4>
+                </div>
+                <div class="modal-body">
+                    <h3>{{messDialogo}}</h3>
+                </div>
+                <div class="modal-footer">
+                    <div class="col-md-12 text-right">
+                        <button type="button" class="btn btn-primary" (click)="confirmar()">Si</button> &nbsp;
+                        <button type="button" class="btn btn-primary" (click)="cancelarConfirmar()">No</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="dialogMessageConfirmAprobar">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">{{titDialogo}}</h4>
+                </div>
+                <div class="modal-body">
+                    <h3>{{messDialogo}}</h3>
+                </div>
+                <div class="modal-footer">
+                    <div class="col-md-12 text-right">
+                        <button type="button" class="btn btn-primary" (click)="confirmarAprobar()">Si</button> &nbsp;
+                        <button type="button" class="btn btn-primary" (click)="cancelarConfirmarAprobar()">No</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+        aria-hidden="true" id="modalFiles">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">{{titDialogo}}</h4>
+                </div>
+                <div class="modal-body">
+                    <object #pdfview [data]='' type="application/pdf" width="100%" height="500px">
+                    </object>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" (click)="imprimir()">Imprimir</button>
+                    <button type="button" class="btn btn-primary" (click)="downloadDictamen()">Descargar</button>
+                    <button type="button" class="btn btn-primary" (click)="closeModal()">Regresar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+        aria-hidden="true" id="modalFilesSIST">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">{{titDialogo}}</h4>
+                </div>
+                <div class="modal-body">
+                    <object #pdfviewSIST [data]='' type="application/pdf" width="100%" height="500px">
+                    </object>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" (click)="imprimirSIST()">Imprimir</button>
+                    <button type="button" class="btn btn-primary" (click)="downloadDictamenSIST()">Descargar</button>
+                    <button type="button" class="btn btn-primary" (click)="closeModalSIST()">Regresar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</main>
+<ngx-spinner></ngx-spinner>

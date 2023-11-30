@@ -1,0 +1,56 @@
+<div style="
+position: fixed;
+top: 120px;
+background-color:  #FFFFFF;
+height: 100px;
+width: 100%;
+margin-left: 0px;
+
+z-index: 100;">
+    <ol class="breadcrumb ">
+        <li><a (click)="goToInicio();" ><i class="icon icon-home"></i></a></li>
+        <li><a (click)="goToInicio();" >Inicio</a></li>
+        <li class="active" *ngIf="menu">{{menu}}</li>
+        <li class="active">{{subMenu}}</li>
+    </ol>
+
+
+
+</div>
+<br>
+<div class="row" style="
+position: fixed;
+top: 180px;
+background-color:  #FFFFFF;
+height: 90px;
+width: 88%;
+margin-left: 0px;
+
+z-index: 100;">
+
+    <div class="col-md-8">
+
+        <h2>{{subMenu}} </h2>
+        <hr class="red">
+
+    </div>
+    <div class="col-md-2">
+        &nbsp;
+    </div>
+    <div class="col-md-4">
+        <div>
+            <span>
+                 {{user.userInfo.sn }} {{user.userInfo.givenName }}
+                <br>
+                 {{user.userInfo.uid}}
+
+           </span>
+            <br>
+            <a class="btn btn-link salir" routerLinkActive="active" (click)="salirPage()">Salir</a>
+        </div>
+    </div>
+
+
+</div>
+
+<br><br><br><br><br><br>

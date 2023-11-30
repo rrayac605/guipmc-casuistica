@@ -1,0 +1,112 @@
+<div class="row">
+    <h3>Reporte por código de error</h3>
+    <hr class="red">
+</div>
+<br>
+<div class="row">
+    <h3>{{subtituloPadre}}</h3>
+</div>
+<br>
+<div class="row table-responsive div">
+    <table class="table table-striped table">
+        <colgroup>
+            <col span="1" class="col-divDerecha">
+            <col span="7">
+            <col span="1" class="col-divDerecha">
+            <col span="8">
+            <col span="1" class="col-divIzquierda">
+        </colgroup>
+        <tbody>
+            <tr>
+                <td class="td"></td>
+                <td class="td-erroneos" colspan="8">Erróneos</td>
+                <td class="td" colspan="8">Erróneos<br>Otras delegaciones</td>
+            </tr>
+            <tr>
+                <th class="th-va">Descripción</th>
+                <!--Erroneos-->
+                <th class="th">Código de<br>error</th>
+                <th class="th-va">RTT</th>
+                <th class="th-va">ST3</th>
+                <th class="th-va">ST5</th>
+                <th class="th-va">AJU</th>
+                <th class="th-va">COD</th>
+                <th class="th-va">ROD</th>
+                <th class="th">Total por<br>tipo de error</th>
+                <!--Erroneos otras-->
+                <th class="th">Código de<br>error</th>
+                <th class="th-va">RTT</th>
+                <th class="th-va">ST3</th>
+                <th class="th-va">ST5</th>
+                <th class="th-va">AJU</th>
+                <th class="th-va">COD</th>
+                <th class="th-va">ROD</th>
+                <th class="th">Total por<br>tipo de error</th>
+            </tr>
+            <tr *ngFor="let resuT of detallePresentacion let i = index">
+                <th class="th-detalleTexto"> {{resuT.descripcion}} </th>
+                <!--Erroneos-->
+                <th class="th-detalleNumero"> {{resuT.numError}} </th>
+                <th class="th-detalleNumero"> {{resuT.numRTT | number}} </th>
+                <th class="th-detalleNumero"> {{resuT.numST3 | number}} </th>
+                <th class="th-detalleNumero"> {{resuT.numST5 | number}} </th>
+                <th class="th-detalleNumero"> {{resuT.numAJU | number}} </th>
+                <th class="th-detalleNumero"> {{resuT.numCOD | number}} </th>
+                <th class="th-detalleNumero"> {{resuT.numROD | number}} </th>
+                <th class="th-detalleNumero"> {{resuT.numTotal | number}} </th>
+                <!--Erroneos otras-->
+                <th class="th-detalleNumero"> {{resuT.numError}} </th>
+                <th class="th-detalleNumero"> {{resuT.numRTTOtras | number}} </th>
+                <th class="th-detalleNumero"> {{resuT.numST3Otras | number}} </th>
+                <th class="th-detalleNumero"> {{resuT.numST5Otras | number}} </th>
+                <th class="th-detalleNumero"> {{resuT.numAJUOtras | number}} </th>
+                <th class="th-detalleNumero"> {{resuT.numCODOtras | number}} </th>
+                <th class="th-detalleNumero"> {{resuT.numRODOtras | number}} </th>
+                <th class="th-detalleNumero"> {{resuT.numTotalOtras | number}} </th>
+            </tr>
+            <tr>
+                <th class="th">Total identificador<br>de archivo</th>
+                <th class="th">&nbsp;</th>
+                <!--Erroneos-->
+                <th class="th-detalleNumero"> {{detalleTotalPresentacion.numTotalRTT | number}} </th>
+                <th class="th-detalleNumero"> {{detalleTotalPresentacion.numTotalST3 | number}} </th>
+                <th class="th-detalleNumero"> {{detalleTotalPresentacion.numTotalST5 | number}} </th>
+                <th class="th-detalleNumero"> {{detalleTotalPresentacion.numTotalAJU | number}} </th>
+                <th class="th-detalleNumero"> {{detalleTotalPresentacion.numTotalCOD | number}} </th>
+                <th class="th-detalleNumero"> {{detalleTotalPresentacion.numTotalROD | number}} </th>
+                <th class="th-detalleNumero"> {{detalleTotalPresentacion.numTotalTipoError | number}} </th>
+                <!--Erroneos otras-->
+                <th class="th">&nbsp;</th>
+                <th class="th-detalleNumero"> {{detalleTotalPresentacion.numTotalRTTOtras | number}} </th>
+                <th class="th-detalleNumero"> {{detalleTotalPresentacion.numTotalST3Otras | number}} </th>
+                <th class="th-detalleNumero"> {{detalleTotalPresentacion.numTotalST5Otras | number}} </th>
+                <th class="th-detalleNumero"> {{detalleTotalPresentacion.numTotalAJUOtras | number}} </th>
+                <th class="th-detalleNumero"> {{detalleTotalPresentacion.numTotalCODOtras | number}} </th>
+                <th class="th-detalleNumero"> {{detalleTotalPresentacion.numTotalRODOtras | number}} </th>
+                <th class="th-detalleNumero"> {{detalleTotalPresentacion.numTotalTipoErrorOtras | number}} </th>
+            </tr>
+            <tr>
+                <th class="th">Total de registros<br>de casuística</th>
+                <th class="th">&nbsp;</th>
+                <th class="th-va">Anterior</th>
+                <th class="th">&nbsp;</th>
+                <th class="th">&nbsp;</th>
+                <th class="th">&nbsp;</th>
+                <th class="th-va">Nuevo</th>
+                <th class="th">&nbsp;</th>
+                <th class="th">&nbsp;</th>
+            </tr>
+            <tr>
+                <th class="th">&nbsp;</th>
+                <th class="th">&nbsp;</th>
+                <th class="th-detalleNumero">{{ mapAnteriorNuevo.get("conteoAnterior") ? (mapAnteriorNuevo.get("conteoAnterior").numTotal | number) : 0 }}</th>
+                <th class="th">&nbsp;</th>
+                <th class="th">&nbsp;</th>
+                <th class="th">&nbsp;</th>
+                <th class="th-detalleNumero">{{ mapAnteriorNuevo.get("conteoNuevos").numTotal | number }}</th>
+                <th class="th">&nbsp;</th>
+                <th class="th">&nbsp;</th>
+            </tr>
+        </tbody>
+    </table>
+</div>

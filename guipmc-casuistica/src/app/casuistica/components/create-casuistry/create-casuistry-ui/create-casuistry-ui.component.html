@@ -1,0 +1,932 @@
+<br>
+<br>
+<app-navbar></app-navbar>
+<app-breadcrumb-ux [titulo]="titulo"></app-breadcrumb-ux>
+<main class="page">
+    <div class="container">
+        <form class="form-inline" [formGroup]="formGroup" (ngSubmit)="guardarCambios()">
+
+            <div class="row">
+                <div class="col-md-4">
+                    <p>Fecha de proceso</p>
+                    <div class="form-group datepicker-group">
+                        <input
+                            [ngClass]="[!formGroup.controls['date'].valid && formGroup.controls['date'].touched ? 'form-control-error':'form-control']  "
+                            formControlName="date" class="form-control " id="fechaAltaCasu">
+                        <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+                    </div>
+                    <br>
+                    <span class="error-class">{{ getError('date')}}</span>
+                </div>
+            </div>
+            <br>
+
+
+            <br>
+            <div class="row table-responsive">
+                <table class="table  table-striped">
+
+
+                    <tbody>
+                        <tr>
+                            <th style="text-align: center;">
+                                Datos del asegurado </th>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="row">
+
+
+                                    <div class="col-md-4 izqText">
+                                        <p>NSS*</p>
+                                        <input class="form-control inputTamanioNormal"
+                                            [ngClass]="[!formGroup.controls['nss'].valid && formGroup.controls['nss'].touched ? 'form-control-error':'form-control']  "
+                                            formControlName="nss" class="form-control inputTamanioNormal"
+                                            (blur)="cambiarNSS()">
+                                        <span class="error-class">{{ getError('nss')}}</span>
+                                    </div>
+                                    <div class="col-md-4 izqText">
+                                        <p>CURP</p>
+                                        <input class="form-control inputTamanioNormal"
+                                            [ngClass]="[!formGroup.controls['curp'].valid && formGroup.controls['curp'].touched ? 'form-control-error':'form-control']  "
+                                            formControlName="curp" class="form-control inputTamanioNormal" readonly>
+                                        <span class="error-class">{{ getError('curp')}}</span>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-md-4 izqText">
+                                        <p>Nombre(s)* </p>
+                                        <input class="form-control inputTamanioNormal"
+                                            [ngClass]="[!formGroup.controls['nombre'].valid && formGroup.controls['nombre'].touched ? 'form-control-error':'form-control']  "
+                                            formControlName="nombre" class="form-control inputTamanioNormal" readonly>
+                                        <br>
+                                        <span class="error-class">{{ getError('nombre')}}</span>
+                                    </div>
+                                    <div class="col-md-4 izqText">
+                                        <p>Primer apellido*</p>
+                                        <input class="form-control inputTamanioNormal"
+                                            [ngClass]="[!formGroup.controls['primerApellido'].valid && formGroup.controls['primerApellido'].touched ? 'form-control-error':'form-control']  "
+                                            formControlName="primerApellido" class="form-control inputTamanioNormal"
+                                            readonly>
+                                        <br>
+                                        <span class="error-class">{{ getError('primerApellido')}}</span>
+                                    </div>
+                                    <div class="col-md-4 izqText">
+                                        <p>Segundo apellido*</p>
+                                        <input class="form-control inputTamanioNormal"
+                                            [ngClass]="[!formGroup.controls['segundoApellido'].valid && formGroup.controls['segundoApellido'].touched ? 'form-control-error':'form-control']  "
+                                            formControlName="segundoApellido" class="form-control inputTamanioNormal"
+                                            readonly>
+                                        <br>
+                                        <span class="error-class">{{ getError('segundoApellido')}}</span>
+                                    </div>
+
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-md-4 izqText">
+                                        <p> Delegación del NSS</p>
+
+                                        <select
+                                            [ngClass]="[!formGroup.controls['delegacionNss'].valid && formGroup.controls['delegacionNss'].touched  ? 'form-control-reducido-error':'form-control inputTamanioReducido']  "
+                                            formControlName="delegacionNss"
+                                            (change)="chargeSubDelegationAdscripcion($event.target.value)">
+                                            <option value="-1">
+                                                <span>Selecciona una opción</span>
+                                            </option>
+                                            <option *ngFor="let del of selectDelegacion" [value]="del.clave">
+                                                {{ del.descripcion }}
+                                            </option>
+
+                                        </select>
+                                        <span class="error-class">{{ getError('delegacionNss')}}</span>
+
+                                    </div>
+
+                                    <div class="col-md-4 izqText">
+                                        <p>Subdelegación del NSS</p>
+
+                                        <select
+                                            [ngClass]="[!formGroup.controls['subdelegacionNss'].valid && formGroup.controls['subdelegacionNss'].touched  ? 'form-control-reducido-error':'form-control inputTamanioReducido']  "
+                                            formControlName="subdelegacionNss"
+                                            (change)="chargeUmfAdscripcion($event.target.value)">
+                                            <option value="-1">
+                                                <span>Selecciona una opción</span>
+                                            </option>
+                                            <option *ngFor="let subDel of selectSubDelegacion"
+                                                [value]="subDel.clave + '@' + subDel.id">
+                                                {{ subDel.descripcion }}
+                                            </option>
+
+                                        </select>
+                                        <span class="error-class">{{ getError('subdelegacionNss')}}</span>
+
+
+                                    </div>
+                                    <div class="col-md-4 izqText">
+                                        <p>UMF de adscripción</p>
+                                        <select
+                                            [ngClass]="[!formGroup.controls['umfAdscripcion'].valid && formGroup.controls['umfAdscripcion'].touched  ? 'form-control-reducido-error':'form-control inputTamanioReducido']  "
+                                            formControlName="umfAdscripcion" id="umfAdscripcion">
+                                            <option value="-1">
+                                                <span>Selecciona una opción</span>
+                                            </option>
+                                            <option *ngFor="let subDel of umfAdscripcion" [value]="subDel.noEconomico">
+                                                {{ subDel.descripcion }}
+                                            </option>
+
+                                        </select>
+                                        <span class="error-class">{{ getError('umfAdscripcion')}}</span>
+                                    </div>
+                                </div>
+                                <br>
+
+                                <br>
+                                <div class="row">
+
+
+                                    <div class="col-md-4 izqText">
+                                        <p>Delegación Atención del NSS</p>
+                                        <select
+                                            [ngClass]="[!formGroup.controls['delegacionAtencionNss'].valid && formGroup.controls['delegacionAtencionNss'].touched  ? 'form-control-reducido-error':'form-control inputTamanioReducido']  "
+                                            formControlName="delegacionAtencionNss"
+                                            (change)="chargeSubDelegationAtencion($event.target.value)">
+                                            <option value="-1">
+                                                <span>Selecciona una opción</span>
+                                            </option>
+                                            <option *ngFor="let del of selectDelegacion" [value]="del.clave">
+                                                {{ del.descripcion }}
+                                            </option>
+
+                                        </select>
+                                        <span class="error-class">{{ getError('delegacionAtencionNss')}}</span>
+                                    </div>
+                                    <div class="col-md-4 izqText">
+                                        <p>Subdelegación de Atención del NSS</p>
+                                        <select
+                                            [ngClass]="[!formGroup.controls['subdelagacionAtencionNss'].valid && formGroup.controls['subdelagacionAtencionNss'].touched  ? 'form-control-reducido-error':'form-control inputTamanioReducido']  "
+                                            formControlName="subdelagacionAtencionNss"
+                                            (change)="chargeUmfAtencion($event.target.value)">
+                                            <option value="-1">
+                                                <span>Selecciona una opción</span>
+                                            </option>
+                                            <option *ngFor="let subDel of selectSubDelegacionAtencion"
+                                                [value]="subDel.clave + '@' + subDel.id">
+                                                {{ subDel.descripcion }}
+                                            </option>
+
+                                        </select>
+                                        <span class="error-class">{{ getError('subdelagacionAtencionNss')}}</span>
+
+
+                                    </div>
+                                    <div class="col-md-4 izqText">
+                                        <p>UMF de expedición</p>
+                                        <select
+                                            [ngClass]="[!formGroup.controls['umfExpedicion'].valid && formGroup.controls['umfExpedicion'].touched  ? 'form-control-reducido-error':'form-control inputTamanioReducido']  "
+                                            formControlName="umfExpedicion">
+                                            <option value="-1">
+                                                <span>Selecciona una opción</span>
+                                            </option>
+                                            <option *ngFor="let subDel of umfAtencion" [value]="subDel.noEconomico">
+                                                {{ subDel.descripcion }}
+                                            </option>
+
+                                        </select>
+                                        <span class="error-class">{{ getError('umfExpedicion')}}</span>
+                                    </div>
+                                </div>
+
+
+                                <br>
+
+                            </td>
+
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+
+            <br>
+
+
+            <!--       TABLA DE LA INCAPACIDAD     -->
+
+
+            <div class="row table-responsive">
+                <table class="table  table-striped">
+
+                    <tbody>
+                        <tr>
+                            <th style="text-align: center;">
+                                Datos del riesgo de trabajo
+
+                            </th>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center">
+                                <div class="row">
+
+                                    <div class="col-md-4 izqText">
+                                        <p>Fecha de accidente/enfermedad *</p>
+
+                                        <div class="form-group datepicker-group">
+                                            <input
+                                                [ngClass]="[!formGroup.controls['date2'].valid && formGroup.controls['date2'].touched ? 'form-control-error':'form-control']  "
+                                                formControlName="date2" id="fechaAltaCasu2" readonly>
+                                            <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+                                        </div>
+                                        <br>
+                                        <span class="error-class">{{ getError('date2')}}</span>
+
+                                    </div>
+
+                                    <div class="col-md-4 izqText">
+                                        <p>Fecha de inicio *</p>
+                                        <div class="form-group datepicker-group">
+                                            <input
+                                                [ngClass]="[!formGroup.controls['date3'].valid && formGroup.controls['date3'].touched ? 'form-control-error':'form-control']  "
+                                                formControlName="date3" id="fechaAltaCasu3" readonly>
+                                            <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+                                        </div>
+                                        <br>
+                                        <span class="error-class">{{ getError('date3')}}</span>
+                                    </div>
+
+                                    <div class="col-md-4 izqText">
+                                        <p>Fecha de término *</p>
+                                        <div class="form-group datepicker-group">
+                                            <input
+                                                [ngClass]="[!formGroup.controls['date4'].valid && formGroup.controls['date4'].touched ? 'form-control-error':'form-control']  "
+                                                formControlName="date4" id="fechaAltaCasu4" readonly>
+                                            <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+                                        </div>
+                                        <br>
+                                        <span class="error-class">{{ getError('date4')}}</span>
+                                    </div>
+
+
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-md-4 izqText">
+                                        <p>Días subsidiados *</p>
+                                        <input class="form-control inputTamanioNormal"
+                                            [ngClass]="[!formGroup.controls['diasSubsidiados'].valid && formGroup.controls['diasSubsidiados'].touched ? 'form-control-error':'form-control']  "
+                                            formControlName="diasSubsidiados" class="form-control inputTamanioNormal">
+                                        <span class="error-class">{{ getError('diasSubsidiados')}}</span>
+                                    </div>
+
+                                    <div class="col-md-4 izqText">
+                                        <p>Porcentaje de incapacidad *</p>
+                                        <input
+                                            [ngClass]="[!formGroup.controls['porcentajeIncapacidad'].valid && formGroup.controls['porcentajeIncapacidad'].touched ? 'form-control-error':'form-control inputTamanioNormal']  "
+                                            formControlName="porcentajeIncapacidad" class="inputTamanioNormal"
+                                            (change)="changeTipoDictamen()">
+                                        <span class="error-class">{{ getError('porcentajeIncapacidad')}}</span>
+
+                                    </div>
+                                    <div class="col-md-4 izqText">
+                                        <p>Consecuencia * </p>
+                                        <select
+                                            [ngClass]="[!formGroup.controls['concecuencia'].valid && formGroup.controls['concecuencia'].touched  ? 'form-control-error':'form-control ']  "
+                                            class="inputTamanioNormal" formControlName="concecuencia"
+                                            (change)="changeTipoDictamen()">
+                                            <option value="-1">
+                                                <span>Selecciona una opción</span>
+                                            </option>
+                                            <option *ngFor="let sts of consecuencias" [value]="sts.cveCatalogo">
+                                                {{sts.cveCatalogo}} - {{ sts.descCatalogo}}
+                                            </option>
+
+                                        </select>
+                                        <span class="error-class">{{ getError('concecuencia')}}</span>
+                                    </div>
+
+
+                                </div>
+                                <br>
+                                <div class="row">
+
+                                    <div class="col-md-4 izqText">
+                                        <p>Tipo de riesgo *</p>
+                                        <select
+                                            [ngClass]="[!formGroup.controls['tipoRiesgo'].valid && formGroup.controls['tipoRiesgo'].touched  ? 'form-control-error':'form-control ']  "
+                                            class="inputTamanioNormal" formControlName="tipoRiesgo">
+                                            <option value="-1">
+                                                <span>Selecciona una opción</span>
+                                            </option>
+                                            <option *ngFor="let sts of tiposRiesgo" [value]="sts.cveCatalogo">
+                                                {{sts.cveCatalogo}} - {{ sts.descCatalogo}}
+                                            </option>
+
+                                        </select>
+                                        <span class="error-class">{{ getError('tipoRiesgo')}}</span>
+                                    </div>
+
+                                    <div class="col-md-4 izqText">
+                                        <p>Laudo *</p>
+                                        <select
+                                            [ngClass]="[!formGroup.controls['laudos'].valid && formGroup.controls['laudos'].touched  ? 'form-control-error':'form-control ']  "
+                                            class="inputTamanioNormal" formControlName="laudos">
+                                            <option value="-1">
+                                                <span>Selecciona una opción</span>
+                                            </option>
+                                            <option *ngFor="let sts of laudos" [value]="sts.cveCatalogo">
+                                                {{sts.cveCatalogo}} - {{ sts.descCatalogo}}
+                                            </option>
+
+                                        </select>
+                                        <span class="error-class">{{ getError('laudos')}}</span>
+
+                                    </div>
+
+                                    <div class="col-md-4 izqText">
+                                        <p>Recuerda que si se trata de Laudo, la fecha de t&eacute;rmino que debes
+                                            capturar es la de emisi&oacute;n del Dictamen, en t&eacute;rminos de lo
+                                            previsto por el art&iacute;culo 156 del Reglamento de Prestaciones
+                                            M&eacute;dicas.</p>
+                                    </div>
+
+                                </div>
+                                <br>
+                                <div class="row">
+
+                                    <div class="col-md-4 izqText">
+                                        <p>Modificación patronal *</p>
+                                        <select
+                                            [ngClass]="[!formGroup.controls['modificacion'].valid && formGroup.controls['modificacion'].touched  ? 'form-control-error':'form-control ']  "
+                                            (change)="changeModificacion()" class="inputTamanioNormal"
+                                            formControlName="modificacion">
+                                            <option value="-1">
+                                                <span>Selecciona una opción</span>
+                                            </option>
+                                            <option value="true">
+                                                <span>Si</span>
+                                            </option>
+                                            <option value="false">
+                                                <span>No</span>
+                                            </option>
+                                        </select>
+                                        <span class="error-class">{{ getError('laudos')}}</span>
+                                    </div>
+
+                                    <div class="col-md-4 izqText" *ngIf="formGroup.value.modificacion == 'true'">
+                                        <p>Tipos de modificación patronal *</p>
+                                        <select
+                                            [ngClass]="[!formGroup.controls['tipoModificacion'].valid && formGroup.controls['tipoModificacion'].touched  ? 'form-control-error':'form-control ']"
+                                            required="formGroup.value.modificacion==1"
+                                            class="form-control inputTamanioNormal" formControlName="tipoModificacion">
+                                            <option value="-1">
+                                                <span>Selecciona una opción</span>
+                                            </option>
+                                            <option *ngFor="let sts of tipoModificacion" [value]="sts.cveCatalogo">
+                                                {{sts.cveCatalogo}} - {{ sts.descCatalogo}}
+                                            </option>
+
+                                        </select>
+                                        <span class="error-class">{{ getError('modificacion')}}</span>
+
+                                    </div>
+
+                                    <div class="col-md-4 izqText">
+                                        <p>Tipo de dictamen</p>
+
+                                        <select
+                                            [ngClass]="[!formGroup.controls['tipoDictamen'].valid && formGroup.controls['tipoDictamen'].touched  ? 'form-control-error':'form-control ']"
+                                            (change)="changeTipoDictamen()" class="inputTamanioNormal"
+                                            formControlName="tipoDictamen">
+                                            <option value="-1">
+                                                <span>Selecciona una opción</span>
+                                            </option>
+                                            <option value="ST3">
+                                                <span>ST3</span>
+                                            </option>
+                                            <option value="ST5">
+                                                <span>ST5</span>
+                                            </option>
+                                        </select>
+
+                                        <span class="error-class">{{ getError('tipoDictamen')}}</span>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row" *ngIf="showDictamen">
+
+                                    <div class="col-md-4 izqText">
+                                        <p>Número de folio</p>
+                                        <input class="form-control inputTamanioNormal"
+                                            [ngClass]="[!formGroup.controls['numFolio'].valid && formGroup.controls['numFolio'].touched ? 'form-control-error':'form-control']  "
+                                            formControlName="numFolio" class="form-control inputTamanioNormal">
+                                        <span class="error-class">{{ getError('numFolio')}}</span>
+                                    </div>
+
+                                    <div class="col-md-4 izqText">
+                                        <p>Adjuntar dictamen</p>
+                                        <input type="file" formControlName="adjDictamen" id="adjDictamen"
+                                            class="form-control inputTamanioNormal" accept=".jpg,.png,.pdf"
+                                            (change)="cargueArchivo($event)"
+                                            [ngClass]="[!formGroup.controls['adjDictamen'].valid && formGroup.controls['adjDictamen'].touched ? 'form-control-error':'form-control']">
+                                        <span class="error-class">{{ getError('adjDictamen')}}</span>
+                                    </div>
+
+                                    <div class="col-md-4 izqText">
+                                        <p>Adjuntar el Dictamen de incapacidad permanente o de defunción por riesgo de
+                                            trabajo. El archivo digitalizado debe estar en cualquiera de los siguientes
+                                            formatos: . JPG, PNG o PDF.
+                                            El archivo no debe exceder 1 MB.</p>
+                                    </div>
+
+                                </div>
+                            </td>
+
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <br>
+
+
+            <!--       TABLA DETALLE DEL RIESGO DEL TRBAJO      -->
+
+
+            <div class="row ">
+                <table class="table  table-striped">
+
+                    <tbody>
+                        <tr>
+                            <th style="text-align: center;">
+                                Detalle del riesgo de trabajo
+
+                            </th>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center">
+                                <div class="row">
+                                    <div class="col-md-6 izqText">
+                                        <p> Código de diagnóstico</p>
+                                        <mat-form-field floatLabel="never" class="relative">
+                                            <loading-spinner [small]="true" class="absolute spinner"
+                                                *ngIf="isLoadingDiagnosticCode"></loading-spinner>
+                                            <input type="text" class="autocomplete" matInput [matAutocomplete]="auto"
+                                                formControlName="codigoDiagnostico">
+                                            <mat-autocomplete #auto="matAutocomplete" id="autocomplete">
+                                                <ng-container>
+                                                    <mat-option *ngFor="let codigo of codigoDiag"
+                                                        [value]="codigo.descCatalogo | uppercase"
+                                                        (onSelectionChange)="selectDiagnosticCode(codigo)"
+                                                        #tooltip="matTooltip"
+                                                        [matTooltip]="codigo.descCatalogo | uppercase"
+                                                        [matTooltipPosition]="'right'">
+                                                        {{ codigo.descCatalogo | uppercase }}
+                                                    </mat-option>
+                                                </ng-container>
+                                            </mat-autocomplete>
+                                            <span class="error-class">{{ getError('codigoDiagnostico')}}</span>
+                                        </mat-form-field>
+
+                                    </div>
+
+                                    <div class="col-md-6 izqText">
+                                        <p>Causa externa</p>
+                                        <mat-form-field floatLabel="never" class="relative">
+                                            <loading-spinner [small]="true" class="absolute spinner"
+                                                *ngIf="isLoadingExternalCause"></loading-spinner>
+                                            <input type="text" class="autocomplete" matInput [matAutocomplete]="auto3"
+                                                formControlName="causaExterna">
+                                            <mat-autocomplete #auto3="matAutocomplete" id="autocomplete3 ">
+                                                <ng-container>
+                                                    <mat-option *ngFor="let externalCause of causaExternaList"
+                                                        [value]="externalCause.descCatalogo | uppercase"
+                                                        #tooltip="matTooltip"
+                                                        (onSelectionChange)="selectExternalCause(externalCause)"
+                                                        [matTooltip]="externalCause.descCatalogo | uppercase"
+                                                        [matTooltipPosition]="'right'">
+                                                        {{ externalCause.descCatalogo | uppercase }}
+                                                    </mat-option>
+                                                </ng-container>
+                                            </mat-autocomplete>
+                                            <span class="error-class">{{ getError('causaExterna')}}</span>
+                                        </mat-form-field>
+                                    </div>
+
+
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-md-6 izqText">
+                                        <p>Naturaleza de la lesión </p>
+                                        <mat-form-field floatLabel="never" class="relative">
+                                            <loading-spinner [small]="true" class="absolute spinner"
+                                                *ngIf="isLoadingNaturaleza"></loading-spinner>
+                                            <input type="text" class="autocomplete" matInput [matAutocomplete]="auto2"
+                                                formControlName="naturaleza">
+                                            <mat-autocomplete #auto2="matAutocomplete" id="autocomplete2">
+                                                <ng-container>
+                                                    <mat-option *ngFor="let naturaleza of naturalezaCat"
+                                                        [value]="naturaleza.descCatalogo | uppercase"
+                                                        (onSelectionChange)="selectNaturaleza(naturaleza)"
+                                                        #tooltip="matTooltip"
+                                                        [matTooltip]="naturaleza.descCatalogo | uppercase"
+                                                        [matTooltipPosition]="'right'">
+                                                        {{ naturaleza.descCatalogo | uppercase }}
+                                                    </mat-option>
+                                                </ng-container>
+                                            </mat-autocomplete>
+                                            <span class="error-class">{{ getError('naturaleza')}}</span>
+                                        </mat-form-field>
+
+                                    </div>
+                                    <div class="col-md-6 izqText">
+                                        <p>Riesgo físico</p>
+                                        <select
+                                            [ngClass]="[!formGroup.controls['riesgoFisico'].valid && formGroup.controls['riesgoFisico'].touched  ? 'form-control-reducido-error':'form-control inputTamanioReducido']  "
+                                            formControlName="riesgoFisico">
+                                            <option value="-1">
+                                                <span>Selecciona una opción</span>
+                                            </option>
+                                            <option *ngFor="let del of riesgoFisicoCat" [value]="del.cveCatalogo">
+                                                {{ del.descCatalogo }}
+                                            </option>
+
+                                        </select>
+                                        <span class="error-class">{{ getError('riesgoFisico')}}</span>
+
+                                    </div>
+
+                                </div>
+                                <br>
+                                <div class="row">
+
+
+                                    <div class="col-md-6 izqText">
+                                        <p>Acto inseguro </p>
+                                        <select
+                                            [ngClass]="[!formGroup.controls['actoInseguro'].valid && formGroup.controls['actoInseguro'].touched  ? 'form-control-reducido-error':'form-control inputTamanioReducido']  "
+                                            formControlName="actoInseguro">
+                                            <option value="-1">
+                                                <span>Selecciona una opción</span>
+                                            </option>
+                                            <option *ngFor="let del of actoInseguroCat" [value]="del.cveCatalogo">
+                                                {{ del.descCatalogo }}
+                                            </option>
+
+                                        </select>
+
+                                    </div>
+
+                                    <div class="col-md-6 izqText">
+                                        <p>Ocupación </p>
+                                        <select
+                                            [ngClass]="[!formGroup.controls['ocupacion'].valid && formGroup.controls['ocupacion'].touched  ? 'form-control-reducido-error':'form-control inputTamanioReducido']  "
+                                            formControlName="ocupacion">
+                                            <option value="-1">
+                                                <span>Selecciona una opción</span>
+                                            </option>
+                                            <option *ngFor="let del of ocupacionCat" [value]="del.cveCatalogo">
+                                                {{ del.descCatalogo }}
+                                            </option>
+
+                                        </select>
+
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <br>
+                                    <div class="col-md-6 izqText">
+                                        <p>Matricula del médico tratante</p>
+                                        <input
+                                            [ngClass]="[!formGroup.controls['medicoTratante'].valid && formGroup.controls['medicoTratante'].touched ? 'form-control-error' : 'form-control']"
+                                            formControlName="medicoTratante" class="inputTamanioNormal">
+                                        <br>
+                                        <span class="error-class">{{getError('medicoTratante')}}</span>
+                                    </div>
+                                    <div class="col-md-6 izqText">
+                                        <p>Matrícula del médico que autoriza CDST</p>
+                                        <input
+                                            [ngClass]="[!formGroup.controls['medicoCDST'].valid && formGroup.controls['medicoCDST'].touched ? 'form-control-error' : 'form-control']"
+                                            formControlName="medicoCDST" class="inputTamanioNormal">
+                                        <br>
+                                        <span class="error-class">{{getError('medicoCDST')}}</span>
+                                    </div>
+                                </div>
+                                <br>
+
+                                <br>
+
+
+                            </td>
+
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <br>
+
+            <!--       TABLA DATOS DEL PATRON     -->
+            <div class="row table-responsive">
+                <table class="table  table-striped">
+
+                    <tbody>
+                        <tr>
+                            <th style="text-align: center;">
+                                Datos del patrón
+                            </th>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center">
+                                <div class="row">
+                                    <div class="col-md-4 izqText">
+                                        <p>Registro Patronal*</p>
+
+
+                                        <input class="form-control inputTamanioNormal"
+                                            [ngClass]="[!formGroup.controls['registroPatronal'].valid && formGroup.controls['registroPatronal'].touched ? 'form-control-error':'form-control']  "
+                                            formControlName="registroPatronal" class="form-control inputTamanioNormal"
+                                            (blur)="cambiarRP('manual')" id="registroPatronal"
+                                            (click)="disableSublimeButon()">
+                                        <span class="error-class">{{ getError('registroPatronal')}}</span>
+                                    </div>
+                                    <div class="col-md-8 izqText">
+                                        <p>Razón social del patrón *</p>
+
+                                        <input class="form-control inputTamanioNormal100"
+                                            [ngClass]="[!formGroup.controls['razonSocialPatron'].valid && formGroup.controls['razonSocialPatron'].touched ? 'form-control-error':'form-control']  "
+                                            formControlName="razonSocialPatron" readonly>
+                                        <br> <span class="error-class">{{ getError('razonSocialPatron')}}</span>
+
+                                    </div>
+
+                                    <input type="hidden" class="btn btn-primary" (click)="cambiarRP('auto')"
+                                        id="registroPatronalFuncion" />
+                                </div>
+                                <br>
+
+                                <div class="row">
+                                    <div class="col-md-4 izqText">
+                                        <p>Clave fracción </p>
+
+                                        <input class="form-control inputTamanioNormal" formControlName="fracion"
+                                            readonly>
+
+                                    </div>
+                                    <div class="col-md-4 izqText">
+                                        <p>Prima SRT</p>
+
+                                        <input class="form-control inputTamanioNormal" formControlName="prima" readonly>
+                                    </div>
+                                    <div class="col-md-4 izqText">
+                                        <p>Clase</p>
+
+                                        <input class="form-control inputTamanioNormal" formControlName="clase" readonly>
+                                    </div>
+
+                                </div>
+                                <br>
+                                <div class="row">
+
+                                    <div class="col-md-12 izqText">
+                                        <p>Actividad económica </p>
+
+                                        <input class="form-control inputTamanioNormal200"
+                                            formControlName="actividadEconomica" readonly>
+
+                                    </div>
+
+                                </div>
+                                <br>
+
+                                <div class="row">
+
+                                    <div class="col-md-4 izqText">
+                                        <p>Delegación del Registro</p>
+
+                                        <input class="form-control inputTamanioNormal"
+                                            formControlName="delegacionRegistro" readonly>
+
+                                    </div>
+                                    <div class="col-md-4 izqText">
+                                        <p>Subdelegación del Registro</p>
+
+                                        <input class="form-control inputTamanioNormal" formControlName="subRegistro"
+                                            readonly>
+
+
+                                    </div>
+                                    <div class="col-md-4 izqText">
+                                        <p>RFC patronal *</p>
+
+                                        <input class="form-control inputTamanioNormal" formControlName="rfcPatronal"
+                                            readonly>
+
+                                    </div>
+
+
+                                </div>
+                                <br>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!--       TABLA DATOS DEL PATRON     -->
+            <div class="row table-responsive">
+                <table class="table  table-striped">
+
+                    <tbody>
+                        <tr>
+                            <th style="text-align: center;">
+                                Datos del registro
+
+                            </th>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center">
+                                <div class="row">
+                                    <div class="col-md-4 izqText">
+                                        <p>Tipo de registro*</p>
+
+                                        <input class="form-control inputTamanioNormal"
+                                            [ngClass]="[!formGroup.controls['casoRegistro'].valid && formGroup.controls['casoRegistro'].touched ? 'form-control-error':'form-control']  "
+                                            formControlName="casoRegistro" class="form-control " style="width: 75%;"
+                                            type="text" id="casoRegistro" readonly>
+                                        <br>
+                                        <span class="error-class">{{ getError('casoRegistro')}}</span>
+                                    </div>
+                                    <div class="col-md-4 izqText">
+                                        <p>Año ciclo</p>
+                                        <input class="form-control inputTamanioNormal"
+                                            [ngClass]="[!formGroup.controls['anioCiclo'].valid && formGroup.controls['anioCiclo'].touched ? 'form-control-error':'form-control']  "
+                                            formControlName="anioCiclo" type="text" id="anioCiclo" readonly>
+                                        <br>
+                                        <span class="error-class">{{ getError('anioCiclo')}}</span>
+
+                                    </div>
+
+                                    <div class="col-md-4 izqText">
+                                        <p>Identificador </p>
+                                        <input class="form-control inputTamanioNormal"
+                                            [ngClass]="[!formGroup.controls['identificador'].valid && formGroup.controls['identificador'].touched ? 'form-control-error':'form-control']  "
+                                            formControlName="identificador" class="form-control inputTamanioNormal"
+                                            type="text" id="identificador" readonly>
+                                        <br>
+                                        <span class="error-class">{{ getError('identificador')}}</span>
+
+                                    </div>
+
+
+                                </div>
+
+
+                                <br>
+
+
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!--      TABLA DE COMENTARIOS       -->
+            <div class="row table-responsive">
+                <table class="table  table-striped">
+                    <tbody>
+                        <tr>
+                            <th style="text-align: center;">
+                                Comentarios
+                            </th>
+                        </tr>
+                        <tr>
+
+                            <td style="text-align: center">
+                                <div class="row">
+                                    <div class="col-md-12 izqText">
+                                        <textarea
+                                            [ngClass]="[!formGroup.controls['comentario'].valid && formGroup.controls['comentario'].touched ? 'form-control-error':'form-control']  "
+                                            formControlName="comentario" class="form-control "
+                                            style="width: 100%;"></textarea>
+                                        <br> <span class="error-class">{{ getError('comentario')}}</span>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!--      FIN TABLA DE COMENTARIOS   -->
+
+            <!--      FIN TABLA DE COMENTARIOS   -->
+
+            <br>
+            <div class="row">
+                <div class="col-md-2 text-left">
+                    <p>*Datos obligatorios</p>
+
+                </div>
+
+                <div class="col-md-10 text-right">
+                    <button type="button" class="btn btn-default" (click)="limpiar()" id="botonLimpiar">Limpiar</button>
+                    &nbsp;
+                    <button id="btnGuardar" type="submit" [disabled]="disableSublime" class="btn btn-primary">Guardar
+                        Registro</button> &nbsp;
+                </div>
+            </div>
+
+            <div class="modal fade" id="dialogMessage">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">{{titDialogo}}</h4>
+                        </div>
+                        <div class="modal-body">
+                            <h3>{{messDialogo}}</h3>
+                        </div>
+                        <div class="modal-footer">
+
+                            <div class="col-md-12 text-right">
+                                <button type="button" class="btn btn-primary"
+                                    (click)="hideMessage('dialogMessage')">Regresar</button> &nbsp;
+                                <button *ngIf="mostrarSi" type="button" class="btn btn-primary"
+                                    (click)="siGuardar()">Si</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade" id="dialogMessageV3">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">{{titDialogo}}</h4>
+                        </div>
+                        <div class="modal-body">
+                            <h3 *ngFor="let resuT of responseValidation">{{resuT.desCodigoError}} </h3>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" *ngIf="mostrarSiFinal"
+                                (click)="hideMessage('dialogMessageV3');">Aceptar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade" id="dialogMessageRelacionLaboral">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">{{titDialogo}}</h4>
+                        </div>
+                        <div class="modal-body">
+                            <h3>{{messDialogo}}</h3>
+                        </div>
+                        <div class="modal-footer">
+
+                            <div class="col-md-12 text-right">
+                                <button type="button" class="btn btn-primary"
+                                    (click)="hideMessage('dialogMessageRelacionLaboral')">No</button> &nbsp;
+                                <button *ngIf="mostrarSi" type="button" class="btn btn-primary"
+                                    (click)="siGuardarSinRelacionLaboral()">Si</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="dialogMessageSUS">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">{{titDialogo}}</h4>
+                        </div>
+                        <div class="modal-body">
+                            <h3>{{messDialogo}} </h3>
+                        </div>
+                        <div class="modal-footer">
+
+                            <div class="col-md-12 text-right">
+                                <button type="button" class="btn btn-primary"
+                                    (click)="hideMessage('dialogMessageSUS')">No</button> &nbsp;
+                                <button type="button" class="btn btn-primary" (click)="siGuardarSUS()">Si</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+
+
+    </div>
+    <br>
+    <br>
+
+    <br>
+</main>
+<ngx-spinner></ngx-spinner>

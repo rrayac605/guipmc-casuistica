@@ -1,0 +1,218 @@
+
+ <br><br>
+<main class="page">
+  <div class="container" >
+
+
+        <form class="form-inline" [formGroup]="formGroup" (ngSubmit)="guardarCambios()"  >
+       
+            <div class="row">   
+                
+                <div class="col-md-8">
+                    <h2>Consulta CIC  </h2>
+                    <hr class="red">
+                    <h3>Ingresa los datos para realizar la búsqueda</h3>
+                    <span class="glyphicon glyphicon-question-sign red-tooltip" aria-hidden="true"  data-toggle="tooltip" data-placement="bottom" 
+                  title="Puede ser el contrato de la cuenta o un 
+                         estado de cuenta bancario" ></span>
+
+                         <a href="#" data-toggle="tooltip" data-placement="bottom"
+       title="" data-original-title="Tooltip on bottom"
+       class="red-tooltip">Tooltip on bottom</a>
+
+       <button type="button" class="btn btn-outline-secondary mr-2" placement="top" ngbTooltip="Tooltip on top">
+        Tooltip on top
+      </button>
+                </div>
+                <div class="col-md-4">
+                    <div class="pull-right">
+                        <span style="margin-right: 10px; float: left">
+                    RAÚL LOPEZ MARTÍNEZ
+                    <br>
+                    LOMR730926HSLPZD08
+
+                </span>
+                        <br>
+                        <a class="btn btn-link salir" [routerLink]="['/login']" routerLinkActive="active" style="
+                        padding-left: 70%;">Salir</a>
+                    </div>
+                </div>
+            </div>
+
+            <br>
+            <div class="row">
+                <div class="form-group col-md-4">
+
+                    <h3 style="margin-top:0px;">Desde</h3>
+                    <div class="form-group datepicker-group">
+                        <input class="form-control" type="text"   id="fechaIncioRegistro"  >
+                        <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+                    </div>
+                </div>
+                <div class="form-group col-md-4">
+                    <h3 style="margin-top:0px;">Hasta</h3>
+                    <div class="form-group datepicker-group">
+                       <input class="form-control" type="text"   id="fechaFin"  >
+                       <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+                    </div>
+              
+                </div>
+            </div>
+
+            <br>
+
+    <div class="row">
+                  <div class="col-md-4">
+                    <h3 style="margin-top:0px;">Delegación</h3>
+                    <select class="form-control" formControlName="delegacion" style="width: 75%;" >
+                        <option value="-1">
+                            <span>Selecciona una opción</span>
+                          </option>
+                    
+                    </select>
+                </div>
+
+                <div class="col-sm-4" style="text-align: left;">
+                    <h3 style="margin-top:0px;">Subdelegación</h3>
+                    <select class="form-control" formControlName="subdelagacion" style="width: 75%;">
+                        <option value="-1">
+                            <span>Selecciona una opción</span>
+                          </option>
+                       
+                    </select>
+                </div>
+
+           
+             
+              
+    </div>
+    
+  
+
+   <br>
+
+<!--         TABLA CON RESULTADOS      -->
+<div   *ngIf="mostrar">
+    <div class="row">
+        <h3>Resultados de búsqueda</h3>
+        <hr class="red">
+        <p>Fecha :{{fechaMostrar}} </p>
+        <p>Periodo consultado:{{periodoMostrar}}</p>
+    </div>
+  
+    <div class="row table-responsive">
+        <table class="table table-striped" style="border: solid 1px #DDDDDD; ">
+         
+    <colgroup>
+        <col span="1">
+        <col span="1" style="border-left: 1px solid #DDDDDD; " >
+       
+        <col span="1" style="border-left: 1px solid #DDDDDD; " >
+        <col span="4">
+        <col span="1" style="border-left: 1px solid #DDDDDD;" >
+    </colgroup>
+            <tbody>
+
+                <tr>
+                    <th style="text-align: center"></th>
+                    <th style="text-align: center"></th>
+                    <th style="text-align: center"></th>
+                    <th style="text-align: center"></th>
+                    <th >Consulta</th>
+                    <th style="text-align: center"></th>
+                    <th style="text-align: center"></th>
+                    <th style="text-align: center"></th>
+                    <th style="text-align: center" >Otras delegaciones</th>
+                    <th style="text-align: center"></th>
+                    <th style="text-align: center"></th>
+                    <th style="text-align: center"></th>
+                    
+
+                </tr>
+                <tr>
+                    <th style="text-align: center">Tipo de archivo</th>
+                    <th style="text-align: center">Total de registros</th>
+                    <th style="text-align: center">Registros correctos</th>
+                    <th style="text-align: center">Registros erróneos</th>
+                    <th style="text-align: center">Registros duplicados</th>
+                    <th style="text-align: center">Registros bajas</th>
+                    <th style="text-align: center">Registros susceptibles de ajustes</th>
+                    <th style="text-align: center">Registros correctos</th>
+                    <th style="text-align: center">Registros erróneos</th>
+                    <th style="text-align: center">Registros duplicados</th>
+                    <th style="text-align: center">Registros susceptibles de ajustes</th>
+                    <th style="text-align: center">Registros bajas</th>
+
+                </tr>
+
+                <tr  *ngFor="let resuT of detalleConsultaArrayDTO">
+                    <td style="text-align: center">{{resuT.tipoArchivo}}</td>
+                    <td style="text-align: center">{{resuT.numTotalRegistros}}</td>
+                    <td style="text-align: center">{{resuT.numRegistrosCorrectos}}</td>
+                    <td style="text-align: center">{{resuT.numRegistrosError}}</td>
+                    <td style="text-align: center">{{resuT.numRegistrosDup}}</td>
+                    <td style="text-align: center">{{resuT.numRegistrosBaja}}</td>
+                    <td style="text-align: center">{{resuT.numRegistrosSus}}</td>
+                    <td style="text-align: center">{{resuT.numRegistrosCorrectos}}</td>
+                    <td style="text-align: center">{{resuT.numRegistrosCorrectosOtras}}</td>
+                    <td style="text-align: center">{{resuT.numRegistrosDupOtras}}</td>
+                    <td style="text-align: center">{{resuT.numRegistrosSusOtras}}</td>
+                    <td style="text-align: center">{{resuT.numRegistrosBajaOtras    }}</td>
+                </tr>
+           
+                <tr>
+
+
+            </tbody>
+        </table>
+    </div>
+</div>
+<!--        FIN DE TABLA CON RESULTADOS      -->
+     <br>
+
+
+            <div class="row">
+                <div class="col-md-5">
+                    <div class="form-group col-md-offset-1 col-md-11" style="margin-left: 0px; padding-left: 0px;">
+                        <label class="col-sm-7" for="email">
+          <h3>
+            * Campos obligatorios
+          </h3>
+        </label>
+
+                    </div>
+                </div>
+                <div class="col-md-7 text-right">
+                    <button type="button" class="btn btn-default"  (click)="clean()" >Limpiar</button>
+                    <button type="submit" class="btn btn-primary" >Buscar</button>
+                    <button type="button" class="btn btn-default" (click)="flujoAlterno()" >Flujo Alterno</button>
+
+                </div>
+            </div>
+        </form>
+
+
+        <div class="modal fade" id="dialogMessage">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">{{titDialogo}}</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>{{messDialogo}}</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" (click)="hideMessage()">Regresar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+     
+
+    </div>
+    <br>
+    <br>
+
+    <br>
+</main>
